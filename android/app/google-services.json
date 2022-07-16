@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "948258588109",
+    "project_id": "paykes",
+    "storage_bucket": "paykes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948258588109:android:03af9144110075b47bf084",
+        "android_client_info": {
+          "package_name": "com.paykes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948258588109-9on8pqlr2nn3bsnq2l10tisga4jbekir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.paykes",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "948258588109-btc46kjac6tsmkfjvj136q70ffnbj62q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuUQmvaCTboJTF-zzZ9wz49YfFTI_wv1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948258588109-btc46kjac6tsmkfjvj136q70ffnbj62q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
