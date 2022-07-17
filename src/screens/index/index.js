@@ -5,6 +5,7 @@ import {styles} from './index.module';
 import GlobalStyles from '../../shared/styles/globalStyles';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import WhiteBoard from '../whiteBoard/whiteBoard';
+import FavoritePainting from '../favoritePainting/favoritePainting';
 
 const WhiteBoardTab = createBottomTabNavigator();
 
@@ -47,15 +48,15 @@ const Index = () => {
       />
       
       <WhiteBoardTab.Screen
-        name="Favorite"
-        component={()=>{}}
+        name="library"
+        component={FavoritePainting}
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>WhiteBoard</CustomText>
+              <CustomText style={styles.bottomNavigatorLabel}>Library</CustomText>
             ),
             tabBarIcon: ({focused, color, size}) => (
-                <CustomText >Favorite</CustomText>
+                <CustomText >Library</CustomText>
             )
         }}
       />
