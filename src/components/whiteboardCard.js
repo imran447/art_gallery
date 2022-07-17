@@ -6,18 +6,25 @@ import GlobalStyles from '../shared/styles/globalStyles';
 import Headphone from '../assets/images/headphones.svg';
 import DisplayFullScreenImage from '../shared/components/displayFullImage';
 
-const WhiteBoardCard = () => {
+const WhiteBoardCard = ({painting}) => {
   const [isDisplayFullImage, setIsDisplayFullImage] = useState(false);
+
+  const handleDisplayImage = () => {
+    setIsDisplayFullImage(true);
+  };
+  const closeFullImage = () => {
+    setIsDisplayFullImage(false);
+  };
   return (
     <>
       <View style={[GlobalStyles.bgWhite, styles.container]}>
         <CustomText style={[GlobalStyles.heading, GlobalStyles.mb1]}>
-          Art Gallery
+          {painting.name}
         </CustomText>
-        <Pressable onPress={() => setIsDisplayFullImage(true)}>
+        <Pressable onPress={handleDisplayImage}>
           <FastImage
             source={{
-              uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
+              uri: painting.image,
             }}
             style={[styles.imageStyle, GlobalStyles.mb1]}
             resizeMode={FastImage.resizeMode.cover}
@@ -44,15 +51,10 @@ const WhiteBoardCard = () => {
         <DisplayFullScreenImage
           Images={[
             {
-              source: {
-                uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-              },
-              title: 'Paris',
-              width: 806,
-              height: 720,
+              uri: painting.image,
             },
           ]}
-          HandleClose={() => setIsDisplayFullImage(false)}
+          HandleClose={closeFullImage}
         />
       )}
     </>
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     borderRadius: 10,
+    marginBottom: 10,
   },
   imageStyle: {
     width: '100%',

@@ -81,7 +81,7 @@ const GlobalStyles = StyleSheet.create({
   },
  
   heading: {
-    fontSize: 20,
+    fontSize: 17,
     color:'#194B43',
     fontWeight: 'bold',
   },
