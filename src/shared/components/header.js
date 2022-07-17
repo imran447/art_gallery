@@ -32,7 +32,7 @@ const Header = ({headerStyle, title, hasBack, onPress}) => {
               style={[
                 GlobalStyles.baseFontFamily,
                 styles.headerTextFont,
-                {padding: 0, margin: 0},
+                {padding: 0, margin: 0,color:GlobalStyles.primary},
               ]}>
               {title}
             </CustomText>
@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 45,
     alignItems: 'center',
+    backgroundColor:'white',
+    borderBottomRightRadius:20,
+    borderBottomLeftRadius:20,
   },
   leftIcon: {
     ...Platform.select({

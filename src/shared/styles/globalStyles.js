@@ -13,6 +13,10 @@ const GlobalStyles = StyleSheet.create({
   mt1: {
     marginTop: 3,
   },
+
+  mR1:{
+    marginRight:4
+  },
   mt2: {
     marginTop: 16,
   },
@@ -26,9 +30,8 @@ const GlobalStyles = StyleSheet.create({
   mt3: {
     marginTop: 24,
   },
-  aqua: '#04AEC4',
-  inputBorder: '#949191',
-  darkAqua: '#038C9E',
+  primary: '#194B43',
+  white: 'white',
   baseFontFamily: {
     // fontFamily: 'Montserrat-SemiBoldItalic',
   },
@@ -57,51 +60,16 @@ const GlobalStyles = StyleSheet.create({
   textBlack: {
     color: 'black',
   },
-  bgWhite: {
-    backgroundColor: 'white',
-  },
-  bgPrimary: {
-    backgroundColor: '#52b44b',
-  },
-  bgSecondary: {
-    backgroundColor: '#B6D820',
-  },
-  textSecondaryLite: {
-    color: '#EBF5C3',
-  },
-  bgSecondaryLite: {
-    backgroundColor: '#EBF5C3',
-  },
+
   flexDirectionRow: {
     flexDirection: 'row',
   },
-  secondaryColor: {
-    color: '#3F925A',
-  },
+ 
+  
   dangerTxt: {
     color: 'red',
   },
-  tertiaryColor: {
-    color: '#f9f6f6',
-  },
-  quaternaryColor: {
-    color: 'lightgray',
-  },
-  bgLightGray: {
-    backgroundColor: '#F1F1F1',
-  },
-  quinaryColor: {
-    color: '#969696',
-  },
-  senaryColor: {
-    color: '#2699fb',
-  },
-  septenaryColor: {
-    color: '#8200a1',
-  },
-  octonaryColor: {
-    color: '#f4f5f7',
-  },
+ 
   flex1: {
     flex: 1,
   },
@@ -111,17 +79,14 @@ const GlobalStyles = StyleSheet.create({
   denaryColor: {
     color: '#faf3a0',
   },
-  boxSize: {
-    height: 48,
-    width: 150,
-  },
-  iosBoxSize: {
-    height: 44,
-    width: 150,
-  },
+ 
   heading: {
-    fontSize: 17,
+    fontSize: 20,
+    color:'#194B43',
     fontWeight: 'bold',
+  },
+  bgWhite:{
+    backgroundColor:'white'
   },
   headerStyle: {
     shadowOffset: {width: 0, height: 3},
@@ -136,13 +101,6 @@ const GlobalStyles = StyleSheet.create({
       },
     }),
   },
-  textFontSize: {
-    fontSize: 14,
-  },
-  textColor: {
-    color: '#817F7F',
-  },
-  underline: {textDecorationLine: 'underline'},
   ScoreWrapper: {
     alignItems: 'center',
     height: 48,
