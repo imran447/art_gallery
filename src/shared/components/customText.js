@@ -16,7 +16,7 @@ export default function CustomText({numberOfLines ,style,children}) {
 }
 const styles = StyleSheet.create({
   primaryText: {
-    color:'#282928',
+    color:'#666666',
     fontSize: 16,
   },
 });

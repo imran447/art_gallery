@@ -13,7 +13,7 @@ const BottomSheet = ({ title, children,refRBSheet}) => {
       ref={refRBSheet}
       closeOnDragDown={true}
       closeOnPressMask={false}
-      height={450}
+      height={500}
       customStyles={{
         container: {
           borderTopLeftRadius: 25,

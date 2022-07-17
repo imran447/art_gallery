@@ -79,7 +79,7 @@ const GlobalStyles = StyleSheet.create({
   denaryColor: {
     color: '#faf3a0',
   },
- 
+  borderColor:"#D1D3D1",
   heading: {
     fontSize: 17,
     color:'#194B43',

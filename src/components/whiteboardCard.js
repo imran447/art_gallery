@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Pressable, StyleSheet, View} from 'react-native';
 import CustomText from '../shared/components/customText';
 import FastImage from 'react-native-fast-image';
 import GlobalStyles from '../shared/styles/globalStyles';
 import Headphone from '../assets/images/headphones.svg';
 import DisplayFullScreenImage from '../shared/components/displayFullImage';
+import BottomSheet from '../shared/components/bottomSheet';
+import CommentList from './commentList';
 
-const WhiteBoardCard = ({painting}) => {
+const WhiteBoardCard = ({painting, handleCommentList}) => {
+  const refRBSheet = useRef(null);
   const [isDisplayFullImage, setIsDisplayFullImage] = useState(false);
 
   const handleDisplayImage = () => {
@@ -15,6 +18,10 @@ const WhiteBoardCard = ({painting}) => {
   const closeFullImage = () => {
     setIsDisplayFullImage(false);
   };
+  const handleComments = () => {
+    handleCommentList();
+  };
+
   return (
     <>
       <View style={[GlobalStyles.bgWhite, styles.container]}>
@@ -36,15 +43,17 @@ const WhiteBoardCard = ({painting}) => {
             <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
             <Headphone height={25} width={25} />
           </View>
-          <View
-            style={[
-              GlobalStyles.flexDirectionRow,
-              GlobalStyles.likeContainer,
-              {marginLeft: 10},
-            ]}>
-            <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
-            <Headphone height={25} width={25} />
-          </View>
+          <Pressable onPress={handleComments}>
+            <View
+              style={[
+                GlobalStyles.flexDirectionRow,
+                GlobalStyles.likeContainer,
+                {marginLeft: 10},
+              ]}>
+              <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
+              <Headphone height={25} width={25} />
+            </View>
+          </Pressable>
         </View>
       </View>
       {isDisplayFullImage && (

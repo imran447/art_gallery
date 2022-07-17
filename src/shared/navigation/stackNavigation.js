@@ -3,6 +3,7 @@ import {View, ActivityIndicator} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Index from '../../screens/index/index';
+import CommentList from '../../components/commentList';
 
 
 const Stack = createStackNavigator();
@@ -13,6 +14,7 @@ const StackNavigator = () => {
         initialRouteFName="index"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="index" component={Index} />
+        <Stack.Screen name="commentList" component={CommentList} />
         {/* <Stack.Screen name="dashboard" component={Dashboard} />
         <Stack.Screen name="addEditRecipients" component={AddEditRecipients} />
         <Stack.Screen name="recipientList" component={RecipientList} />

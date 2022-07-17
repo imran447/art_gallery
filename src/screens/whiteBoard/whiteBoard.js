@@ -6,7 +6,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import WhiteBoardCard from '../../components/whiteboardCard';
 import {styles} from './whiteBoard.module';
 
-const WhiteBoard = () => {
+const WhiteBoard = ({navigation}) => {
   const [paintings, setPaintings] = useState([
     {
       name: 'Art Gallery',
@@ -27,13 +27,21 @@ const WhiteBoard = () => {
       image: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
     },
   ]);
+  const handleCommentList = () => {
+    navigation.navigate('commentList');
+  };
   return (
     <View>
       <Header title={'Whiteboard'} />
       <ScrollView style={styles.container}>
         <View style={styles.paintings}>
           {paintings.map(painting => {
-            return <WhiteBoardCard painting={painting} />;
+            return (
+              <WhiteBoardCard
+                painting={painting}
+                handleCommentList={handleCommentList}
+              />
+            );
           })}
         </View>
       </ScrollView>
