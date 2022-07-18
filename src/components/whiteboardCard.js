@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {Image, Pressable, StyleSheet, View} from 'react-native';
 import CustomText from '../shared/components/customText';
 import FastImage from 'react-native-fast-image';
 import GlobalStyles from '../shared/styles/globalStyles';
-import Headphone from '../assets/images/headphones.svg';
+import HeartIcon from '../assets/images/heart.svg';
 import DisplayFullScreenImage from '../shared/components/displayFullImage';
 import BottomSheet from '../shared/components/bottomSheet';
 import CommentList from './commentList';
@@ -41,7 +41,7 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
           <View
             style={[GlobalStyles.flexDirectionRow, GlobalStyles.likeContainer]}>
             <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
-            <Headphone height={25} width={25} />
+            <HeartIcon height={20} width={20} fill="black" />
           </View>
           <Pressable onPress={handleComments}>
             <View
@@ -51,7 +51,10 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
                 {marginLeft: 10},
               ]}>
               <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
-              <Headphone height={25} width={25} />
+              <Image
+                source={require('../assets/images/comment.png')}
+                style={{height: 20, width: 20}}
+              />
             </View>
           </Pressable>
         </View>

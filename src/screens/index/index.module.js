@@ -22,8 +22,9 @@ export const styles = StyleSheet.create({
 
   barStyle:{
     backgroundColor: GlobalStyles.primary,
+    paddingBottom:5
   },
   bottomNavigatorLabel:{
     color:'white'
-  }
+  },
 });

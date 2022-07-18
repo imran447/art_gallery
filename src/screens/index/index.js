@@ -6,30 +6,21 @@ import GlobalStyles from '../../shared/styles/globalStyles';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import WhiteBoard from '../whiteBoard/whiteBoard';
 import FavoritePainting from '../favoritePainting/favoritePainting';
+import Setting from '../setting/setting';
+import WhiteBoardIcon from '../../assets/images/whiteboard.svg';
+import PhotoIcon from '../../assets/images/photo.svg';
+import SettingsIcon from '../../assets/images/settings.svg';
+import LibraryIcon from '../../assets/images/library.svg';
 
 const WhiteBoardTab = createBottomTabNavigator();
 
 const Index = () => {
   return (
-    // <View style={[styles.mainContainer]}>
-    //   <View style={[styles.container]}>
-    //     <Image
-    //       source={require('../../assets/images/logo.png')}
-    //       style={[styles.image]}
-    //     />
-    //     <CustomText style={[styles.heading, GlobalStyles.mb2]}>
-    //       Art Gallery
-    //     </CustomText>
-    //   </View>
-    // </View>
+
     <WhiteBoardTab.Navigator
       tabBarOptions={{
-        // activeTintColor: themeColors.secondary,
         tabStyle: [styles.barStyle],
-        showLabel: true,
-        style: {
-          borderTopWidth: 0,
-        },
+        showLabel: true
       }}
       screenOptions={{headerShown: false}}>
       <WhiteBoardTab.Screen
@@ -38,55 +29,59 @@ const Index = () => {
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>WhiteBoard</CustomText>
+              <CustomText style={styles.bottomNavigatorLabel}>
+                WhiteBoard
+              </CustomText>
             ),
-            tabBarIcon: ({focused, color, size}) => (
-                <CustomText>WhiteBoard</CustomText>
-            )
+          tabBarIcon: ({focused, color, size}) => (
+            <WhiteBoardIcon height={20} width={20} fill="white" />
+          ),
         }}
-        
       />
-      
+
       <WhiteBoardTab.Screen
         name="library"
         component={FavoritePainting}
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>Library</CustomText>
+              <CustomText style={styles.bottomNavigatorLabel}>
+                Library
+              </CustomText>
             ),
-            tabBarIcon: ({focused, color, size}) => (
-                <CustomText >Library</CustomText>
-            )
+          tabBarIcon: ({focused, color, size}) => (
+            <LibraryIcon height={20} width={20} fill="white" />
+          ),
         }}
       />
-       <WhiteBoardTab.Screen
+      <WhiteBoardTab.Screen
         name="Painting"
-        component={()=>{}}
+        component={() => {}}
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>WhiteBoard</CustomText>
+              <CustomText style={styles.bottomNavigatorLabel}>Arts</CustomText>
             ),
-            tabBarIcon: ({focused, color, size}) => (
-                <CustomText>Painting</CustomText>
-            )
+          tabBarIcon: ({focused, color, size}) => (
+            <PhotoIcon height={20} width={20} fill="white" />
+          ),
         }}
       />
-       <WhiteBoardTab.Screen
+      <WhiteBoardTab.Screen
         name="Setting"
-        component={()=>{}}
+        component={Setting}
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>WhiteBoard</CustomText>
+              <CustomText style={styles.bottomNavigatorLabel}>
+                Settings
+              </CustomText>
             ),
-            tabBarIcon: ({focused, color, size}) => (
-                <CustomText>Setting</CustomText>
-            )
+          tabBarIcon: ({focused, color, size}) => (
+            <SettingsIcon height={20} width={20} fill="white" />
+          ),
         }}
       />
-      
     </WhiteBoardTab.Navigator>
   );
 };
