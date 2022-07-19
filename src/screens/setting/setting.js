@@ -2,12 +2,19 @@ import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Header from '../../shared/components/header';
-import GlobalStyles from '../../shared/styles/globalStyles';
-import { styles } from './setting.module';
+import {styles} from './setting.module';
 import FastImage from 'react-native-fast-image';
 import CustomText from '../../shared/components/customText';
+import RedirectTab from '../../components/redirectTab';
+import LibraryIcon from '../../assets/images/library.svg';
+import CustomButton from '../../shared/components/customButton';
 
-const Setting = () => {
+const Setting = ({navigation}) => {
+
+  const handleLoginPage = ()=>{
+    navigation.navigate("login");
+  }
+
   return (
     <View style={[{flex: 1}]}>
       <Header title="Settings" />
@@ -23,7 +30,6 @@ const Setting = () => {
                 }}
                 style={[styles.imageStyle]}
                 resizeMode={FastImage.resizeMode.cover}
-               
               />
             </Pressable>
 
@@ -32,7 +38,7 @@ const Setting = () => {
                 style={{
                   fontSize: 17,
                   fontWeight: 'bold',
-                  color:'white'
+                  color: 'white',
                 }}>
                 {`Daniel`}
               </CustomText>
@@ -40,7 +46,7 @@ const Setting = () => {
                 style={{
                   fontSize: 14,
                   marginTop: 5,
-                  color:'white'
+                  color: 'white',
                 }}>
                 {'+9246854465'}
               </CustomText>
@@ -48,7 +54,7 @@ const Setting = () => {
                 style={{
                   fontSize: 14,
                   marginTop: -4,
-                  color:'white'
+                  color: 'white',
                 }}>
                 {`imran@gmail.com`}
               </CustomText>
@@ -58,64 +64,58 @@ const Setting = () => {
             </Pressable>
           </View>
 
-          {/* <View style={{marginTop: 20}}>
+          <View style={{marginTop: 20}}>
             <RedirectTab
-              CustomText={'Manage Gyms'}
-              onPress={handlegym}
+              text={'About Us'}
+              onPress={() => {}}
               LeftIcon={() => (
-                <ManageGymIcon
+                <LibraryIcon
                   width={styles.iconSize.width}
                   height={styles.iconSize.height}
-                  fill={themeColors.txtSecondary}
+                  fill={'black'}
                 />
               )}
               RightIcon={() => (
-                <RightArrow
+                <LibraryIcon
                   style={styles.arrowIcon}
                   width={styles.arrowIcon.width}
                   height={styles.arrowIcon.height}
-                  fill={themeColors.txtSecondary}
+                  fill={'black'}
                 />
               )}
             />
 
-           
             <RedirectTab
-              CustomText={'Sign Out'}
-              onPress={handleLogOut}
+              text={'Sign Out'}
+              onPress={() => {}}
               LeftIcon={() => (
-                <Signout
+                <LibraryIcon
                   width={styles.iconSize.width}
                   height={styles.iconSize.height}
-                  fill={themeColors.txtSecondary}
+                  fill={'black'}
                 />
               )}
               RightIcon={() => (
-                <RightArrow
+                <LibraryIcon
                   style={styles.arrowIcon}
                   width={styles.arrowIcon.width}
                   height={styles.arrowIcon.height}
-                  fill={themeColors.txtSecondary}
+                  fill={'black'}
                 />
               )}
-              isLoading={tabLoading}
+              isLoading={false}
             />
-          </View> */}
+          </View>
+          <View style={styles.planButtonContainer}>
+            <CustomButton
+              Title={'Try premium plan'}
+              style={styles.planButton}
+              onPress={handleLoginPage}
+            />
+          </View>
         </>
       </ScrollView>
-      {/* {DisplayFullImage && (
-        <DisplayFullScreenImage
-          Images={[
-            {
-              uri: projectSettings.imageBaseUrl + user.Image,
-            },
-          ]}
-          HandleClose={() => SetDisplayFullImage(false)}
-        />
-      )} */}
     </View>
   );
 };
 export default Setting;
-
-

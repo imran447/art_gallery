@@ -4,6 +4,8 @@ import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Index from '../../screens/index/index';
 import CommentList from '../../components/commentList';
+import ForgotPassword from '../../screens/forgotPassword/forgotPassword';
+import Login from '../../screens/login/login';
 
 
 const Stack = createStackNavigator();
@@ -15,12 +17,15 @@ const StackNavigator = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="index" component={Index} />
         <Stack.Screen name="commentList" component={CommentList} />
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="forgotPassword" component={ForgotPassword} /> 
         {/* <Stack.Screen name="dashboard" component={Dashboard} />
         <Stack.Screen name="addEditRecipients" component={AddEditRecipients} />
         <Stack.Screen name="recipientList" component={RecipientList} />
         <Stack.Screen name="signup" component={Signup} />
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="forgotPassword" component={ForgotPassword} /> */}
+        
+        
+        */}
 
         {/* {context.userToken ? (
           <>

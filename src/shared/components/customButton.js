@@ -23,8 +23,6 @@ const CustomButton = ({
       uppercase={false}
       color={OverlayColor}
       contentStyle={[
-        GlobalStyles.baseFontFamily,
-        GlobalStyles.bgPrimary,
         styles.buttonContainer,
         contentStyle,
       ]}
@@ -37,7 +35,8 @@ const CustomButton = ({
 const styles = StyleSheet.create({
   buttonContainer: {
     height: Platform.OS === 'ios' ? 40 : 45,
-    borderRadius:25
+    borderRadius:20,
+    backgroundColor:GlobalStyles.primary
   },
   buttonText: {
     color: 'white',
