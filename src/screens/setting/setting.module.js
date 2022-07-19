@@ -116,8 +116,13 @@ export const styles = StyleSheet.create({
     width: '90%',
   },
   planButtonContainer: {
-    marginTop:60,
+    marginTop: 60,
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  image: {
+    marginTop:30,
+    height: 80,
+    width: 80,
   },
 });

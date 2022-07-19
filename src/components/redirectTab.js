@@ -30,7 +30,6 @@ export default function RedirectTab({text, onPress, isLoading,LeftIcon ,RightIco
         }
         </>
       </TouchableRipple>
-      <Divider />
     </>
   );
 }
@@ -38,6 +37,8 @@ const styles = StyleSheet.create({
   selectTrack: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor:'white',
+    marginBottom:10
   },
   selectedTrackBox: {
     flexDirection: 'row',

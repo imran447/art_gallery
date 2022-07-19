@@ -13,6 +13,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import TextInputField from '../../shared/components/textInputField';
 import CustomButton from '../../shared/components/customButton';
 import CustomText from '../../shared/components/customText';
+import Header from '../../shared/components/header';
 
 const Signup = ({navigation}) => {
   const [termsServices, setTermsServices] = useState(false);
@@ -28,13 +29,14 @@ const Signup = ({navigation}) => {
 
   return (
     <>
+      <Header title={'Sign up'} hasBack onPress={() => navigation.pop()} />
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'position' : ''}
             keyboardVerticalOffset={Platform.OS === 'ios' && 90}>
             <ScrollView keyboardShouldPersistTaps="handled">
-            <CustomText style={[styles.title]}>Sign up</CustomText>
+              <CustomText style={[styles.title]}>Sign up</CustomText>
               <View style={[styles.container]}>
                 <View>
                   <TextInputField
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingLeft: 15,
   },
-  
+
   container: {
     padding: 15,
     display: 'flex',

@@ -18,13 +18,9 @@ import {styles} from '../login/login.module';
 
 const ForgotPassword = ({navigation}) => {
   const [pageStatusTitle, setPageStatusTitle] = useState('Forgot Password');
-  const [emailOrPhone, setEmailOrPhone] = useState('');
-  const [password, setPassword] = useState('');
   const [pageStatus, setPageStatus] = useState(0); // 0 for forgot ,1 for otp , 2 for password reset
 
-  const handleBackNavigation = () => {
-    navigation.goBack();
-  };
+
 
   const handleOtp = () => {
     setPageStatus(1);
@@ -36,11 +32,16 @@ const ForgotPassword = ({navigation}) => {
   };
   const handleForgotPassword = () => {};
   const handleSignin = () => {
-    navigation.navigate("login")
+    navigation.navigate('login');
   };
 
   return (
     <>
+      <Header
+        title={pageStatusTitle}
+        hasBack
+        onPress={() => navigation.pop()}
+      />
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView
@@ -69,9 +70,7 @@ const ForgotPassword = ({navigation}) => {
                   )}
 
                   {pageStatus === 1 && (
-                    <OTP
-                      handleSuccess={handleResetPassword}
-                    />
+                    <OTP handleSuccess={handleResetPassword} />
                   )}
                   {pageStatus === 2 && (
                     <ResetPassword

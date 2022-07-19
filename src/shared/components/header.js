@@ -13,7 +13,7 @@ const Header = ({headerStyle, title, hasBack, onPress}) => {
           <CustomIconButton
             Icon={() => (
               <FastImage
-                source={require('../../assets/images/backArrow.jpg')}
+                source={require('../../assets/images/backArrow.png')}
                 style={[styles.iconSize]}
                 resizeMode={FastImage.resizeMode.cover}
               />

@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState} from 'react';
 
 import {
@@ -19,14 +20,15 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const handleBackNavigation = () => {
-    navigation.goBack();
+    navigation.pop();
   };
 
   const handleFogotPassword = () => {
     navigation.navigate('forgotPassword');
   };
-  const handleLogin = () => {
-    navigation.navigate('index');
+  const handleLogin = async () => {
+    await AsyncStorage.setItem('token', '12345');
+    navigation.push('index');
   };
   const handleSignup = () => {
     navigation.navigate('signup');
@@ -34,6 +36,7 @@ const Login = ({navigation}) => {
 
   return (
     <>
+      <Header title={'Sign in'} hasBack onPress={handleBackNavigation} />
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView
