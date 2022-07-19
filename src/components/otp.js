@@ -1,10 +1,7 @@
-import {firebase} from '@react-native-firebase/auth';
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import OTPTextInput from 'react-native-otp-textinput';
-import CustomButton from '../../shared/components/customButton';
-import {showToastMessage} from '../../shared/js/showToastMessage';
-import GlobalStyles from '../../shared/styles/globalStyles';
-import auth from '@react-native-firebase/auth';
+import CustomButton from '../shared/components/customButton';
+import GlobalStyles from '../shared/styles/globalStyles';
 
 const OTP = ({ handleSuccess}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +14,7 @@ const OTP = ({ handleSuccess}) => {
   return (
     <>
       <OTPTextInput
-        textInputStyle={{width: '12%'}}
+        textInputStyle={{width: '12%',borderBottomColor:GlobalStyles.primary}}
         handleTextChange={value => setOTPValue(value)}
         inputCount={6}></OTPTextInput>
       <CustomButton

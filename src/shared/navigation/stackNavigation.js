@@ -6,6 +6,7 @@ import Index from '../../screens/index/index';
 import CommentList from '../../components/commentList';
 import ForgotPassword from '../../screens/forgotPassword/forgotPassword';
 import Login from '../../screens/login/login';
+import Signup from '../../screens/signup/signup';
 
 
 const Stack = createStackNavigator();
@@ -19,10 +20,10 @@ const StackNavigator = () => {
         <Stack.Screen name="commentList" component={CommentList} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="forgotPassword" component={ForgotPassword} /> 
+        <Stack.Screen name="signup" component={Signup} />
         {/* <Stack.Screen name="dashboard" component={Dashboard} />
         <Stack.Screen name="addEditRecipients" component={AddEditRecipients} />
         <Stack.Screen name="recipientList" component={RecipientList} />
-        <Stack.Screen name="signup" component={Signup} />
         
         
         */}

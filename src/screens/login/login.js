@@ -23,14 +23,17 @@ const Login = ({navigation}) => {
   };
 
   const handleFogotPassword = () => {
-    navigation.navigate("forgotPassword");
+    navigation.navigate('forgotPassword');
   };
-  const handleLogin = () => {};
-  const handleSignup = () => {};
+  const handleLogin = () => {
+    navigation.navigate('index');
+  };
+  const handleSignup = () => {
+    navigation.navigate('signup');
+  };
 
   return (
     <>
-      <Header title={'Sign in'} hasBack={true} onPress={handleBackNavigation} />
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView

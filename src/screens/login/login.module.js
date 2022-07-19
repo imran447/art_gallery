@@ -9,10 +9,11 @@ export const styles = StyleSheet.create({
     },
     title: {
       color: GlobalStyles.primary,
-      fontSize: 35,
+      fontSize: 30,
       fontWeight: 'bold',
       paddingLeft: 15,
     },
+    
     mainContainer: {
       height: '100%',
     },

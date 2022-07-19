@@ -35,15 +35,12 @@ const ForgotPassword = ({navigation}) => {
     setPageStatusTitle('Reset Password');
   };
   const handleForgotPassword = () => {};
-  const handleSignup = () => {};
+  const handleSignin = () => {
+    navigation.navigate("login")
+  };
 
   return (
     <>
-      <Header
-        title={'Forgot password'}
-        hasBack={true}
-        onPress={handleBackNavigation}
-      />
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView
@@ -64,7 +61,7 @@ const ForgotPassword = ({navigation}) => {
                         <CustomButton
                           Title={'Send OTP'}
                           style={[GlobalStyles.mt3]}
-                          IsLoading={isLoading}
+                          IsLoading={false}
                           onPress={handleOtp}
                         />
                       </View>
@@ -78,7 +75,6 @@ const ForgotPassword = ({navigation}) => {
                   )}
                   {pageStatus === 2 && (
                     <ResetPassword
-                      phoneNumber={formatedPhoneNumber}
                       handleSuccess={() => navigation.navigate('login')}
                     />
                   )}
@@ -86,7 +82,7 @@ const ForgotPassword = ({navigation}) => {
                     <CustomText style={[styles.sigunpText]}>
                       Already have an account?{' '}
                     </CustomText>
-                    <Pressable onPress={handleSignup}>
+                    <Pressable onPress={handleSignin}>
                       <CustomText style={[styles.signup]}>Sign in</CustomText>
                     </Pressable>
                   </View>

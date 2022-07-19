@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-import CustomButton from '../../shared/components/customButton';
-import TextInputField from '../../shared/components/textInputField';
-import firestore from '@react-native-firebase/firestore';
-import GlobalStyles from '../../shared/styles/globalStyles';
-import {showToastMessage} from '../../shared/js/showToastMessage';
+import GlobalStyles from '../shared/styles/globalStyles';
+import CustomButton from '../shared/components/customButton';
+import TextInputField from '../shared/components/textInputField';
 
-const ResetPassword = ({phoneNumber, handleSuccess}) => {
+const ResetPassword = ({handleSuccess}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isButtonLoading, setIsButtonLoading] = useState('');
