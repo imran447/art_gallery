@@ -37,11 +37,11 @@ const ForgotPassword = ({navigation}) => {
 
   return (
     <>
-      <Header
+      {/* <Header
         title={pageStatusTitle}
         hasBack
         onPress={() => navigation.pop()}
-      />
+      /> */}
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView

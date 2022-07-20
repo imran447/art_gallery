@@ -29,7 +29,7 @@ const Signup = ({navigation}) => {
 
   return (
     <>
-      <Header title={'Sign up'} hasBack onPress={() => navigation.pop()} />
+      {/* <Header title={'Sign up'} hasBack onPress={() => navigation.pop()} /> */}
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView

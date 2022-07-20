@@ -36,7 +36,7 @@ const Login = ({navigation}) => {
 
   return (
     <>
-      <Header title={'Sign in'} hasBack onPress={handleBackNavigation} />
+      {/* <Header title={'Sign in'} hasBack onPress={handleBackNavigation} /> */}
       <View style={{flex: 1}}>
         <View style={[styles.page]}>
           <KeyboardAvoidingView
