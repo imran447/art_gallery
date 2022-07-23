@@ -60,11 +60,11 @@ const Setting = ({navigation}) => {
                   marginTop: -4,
                   color: 'white',
                 }}>
-                {`imran@gmail.com`}
+                {`daniel@gmail.com`}
               </CustomText>
             </View>
             <Pressable>
-              <CustomText style={styles.editButton}>Edit</CustomText>
+              {/* <CustomText style={styles.editButton}>Edit</CustomText> */}
             </Pressable>
           </View>
 

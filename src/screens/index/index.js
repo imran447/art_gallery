@@ -11,6 +11,7 @@ import WhiteBoardIcon from '../../assets/images/whiteboard.svg';
 import PhotoIcon from '../../assets/images/photo.svg';
 import SettingsIcon from '../../assets/images/settings.svg';
 import LibraryIcon from '../../assets/images/library.svg';
+import Arts from '../arts/arts';
 
 const WhiteBoardTab = createBottomTabNavigator();
 
@@ -55,8 +56,8 @@ const Index = () => {
         }}
       />
       <WhiteBoardTab.Screen
-        name="Painting"
-        component={() => {}}
+        name="arts"
+        component={Arts}
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (
