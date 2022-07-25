@@ -12,10 +12,39 @@ const FavoritePainting = () => {
       name: 'Art Gallery',
       image:
         'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
+      width: '39%',
     },
     {
       name: 'Sketch',
       image: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
+      width: '58%',
+    },
+    {
+      name: 'Painting',
+      image:
+        'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
+      width: '49%',
+
+    },
+    {
+      name: 'Arts',
+      image: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
+      width: '49%',
+
+    },
+    {
+      name: 'Art Gallery',
+      image:
+        'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
+      width: '58%',
+
+    },
+    {
+      name: 'Sketch',
+      image: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
+
+      width: '39%',
+
     },
     {
       name: 'Painting',
@@ -25,34 +54,26 @@ const FavoritePainting = () => {
     {
       name: 'Arts',
       image: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
+      width: '100%',
+
     },
-    {
-        name: 'Art Gallery',
-        image:
-          'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-      },
-      {
-        name: 'Sketch',
-        image: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
-      },
-      {
-        name: 'Painting',
-        image:
-          'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-      },
-      {
-        name: 'Arts',
-        image: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
-      },
   ]);
   return (
     <View>
       <Header title={'Library'} />
       <ScrollView style={styles.container}>
-      <CustomText style={[GlobalStyles.heading,{fontSize:22},GlobalStyles.mt1]}>Favorite Painting</CustomText>
-        <View style={[styles.paintings,GlobalStyles.mt2]}>
+        <CustomText
+          style={[GlobalStyles.heading, {fontSize: 22}, GlobalStyles.mt1]}>
+          Favorite Painting
+        </CustomText>
+        <View style={[styles.paintings, GlobalStyles.mt2]}>
           {paintings.map(painting => {
-            return <FavoritePaintingCard painting={painting} />;
+            return (
+              <FavoritePaintingCard
+                painting={painting}
+                containerWidth={painting.width}
+              />
+            );
           })}
         </View>
       </ScrollView>

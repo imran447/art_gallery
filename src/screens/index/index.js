@@ -12,16 +12,16 @@ import PhotoIcon from '../../assets/images/photo.svg';
 import SettingsIcon from '../../assets/images/settings.svg';
 import LibraryIcon from '../../assets/images/library.svg';
 import Arts from '../arts/arts';
+import Artist from '../artist/artist';
 
 const WhiteBoardTab = createBottomTabNavigator();
 
 const Index = () => {
   return (
-
     <WhiteBoardTab.Navigator
       tabBarOptions={{
         tabStyle: [styles.barStyle],
-        showLabel: true
+        showLabel: true,
       }}
       screenOptions={{headerShown: false}}>
       <WhiteBoardTab.Screen
@@ -65,6 +65,24 @@ const Index = () => {
             ),
           tabBarIcon: ({focused, color, size}) => (
             <PhotoIcon height={20} width={20} fill="white" />
+          ),
+        }}
+      />
+      <WhiteBoardTab.Screen
+        name="artist"
+        component={Artist}
+        options={{
+          tabBarLabel: ({focused, color}) =>
+            focused && (
+              <CustomText style={styles.bottomNavigatorLabel}>
+                Artist
+              </CustomText>
+            ),
+          tabBarIcon: ({focused, color, size}) => (
+            <Image
+              source={require('../../assets/images/make-up.png')}
+              style={{height: 30, width: 30}}
+            />
           ),
         }}
       />

@@ -3,12 +3,14 @@ import {Pressable, StyleSheet, View} from 'react-native';
 import CustomText from '../shared/components/customText';
 import FastImage from 'react-native-fast-image';
 import GlobalStyles from '../shared/styles/globalStyles';
-import Headphone from '../assets/images/headphones.svg';
 import DisplayFullScreenImage from '../shared/components/displayFullImage';
-import BottomSheet from '../shared/components/bottomSheet';
-import CommentList from './commentList';
+import LinearGradient from 'react-native-linear-gradient';
 
-const FavoritePaintingCard = ({painting, handleCommentList}) => {
+const FavoritePaintingCard = ({
+  painting,
+  handleCommentList,
+  containerWidth,
+}) => {
   const refRBSheet = useRef(null);
   const [isDisplayFullImage, setIsDisplayFullImage] = useState(false);
 
@@ -24,10 +26,11 @@ const FavoritePaintingCard = ({painting, handleCommentList}) => {
 
   return (
     <>
-      <View style={[GlobalStyles.bgWhite, styles.container]}>
-        <CustomText style={[ GlobalStyles.mb1]}>
-          {painting.name}
-        </CustomText>
+      <View
+        style={[
+          styles.container,
+          {width: containerWidth},
+        ]}>
         <Pressable onPress={handleDisplayImage}>
           <FastImage
             source={{
@@ -37,6 +40,17 @@ const FavoritePaintingCard = ({painting, handleCommentList}) => {
             resizeMode={FastImage.resizeMode.cover}
           />
         </Pressable>
+        <View style={[styles.bottomContainer]}>
+          <LinearGradient
+            colors={[
+              'rgba(0, 0, 0,0.1)',
+              'rgba(0, 0,0,0.5)',
+              'rgba(0, 0, 0,0.6)',
+            ]}
+            style={styles.linearGradient}>
+            <CustomText style={{color: 'white',fontSize:18}}> {painting.name}</CustomText>
+          </LinearGradient>
+        </View>
       </View>
       {isDisplayFullImage && (
         <DisplayFullScreenImage
@@ -55,17 +69,24 @@ export default FavoritePaintingCard;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    borderRadius: 10,
     marginBottom: 10,
-    width:'49%'
+    position: 'relative',
   },
   imageStyle: {
     width: '100%',
     height: 130,
-    borderRadius: 5,
   },
   likeContainer: {
     alignItems: 'center',
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingVertical: 5,
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
   },
 });
