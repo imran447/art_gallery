@@ -2,11 +2,15 @@ import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import CustomText from '../../shared/components/customText';
 import LinearGradient from 'react-native-linear-gradient';
+import environment from '../../shared/js/environment';
 
-const ArtistCard = ({artist}) => {
+const ArtistCard = ({data}) => {
   return (
     <View style={[styles.card]}>
-      <Image source={artist.image} style={[styles.image]} />
+      <Image source={
+        // environment.serverUrl + data.artist.artistImage
+        require('../../assets/images/artist1.jpg')
+      } style={[styles.image]} />
       <View style={[styles.bottomContainer]}>
         <LinearGradient
           colors={[
@@ -15,8 +19,8 @@ const ArtistCard = ({artist}) => {
             'rgba(0, 0, 0,0.6)',
           ]}
           style={styles.linearGradient}>
-          <CustomText style={[styles.text]}>{artist.name}</CustomText>
-          <CustomText style={[styles.textItem]}>{artist.item} items</CustomText>
+          <CustomText style={[styles.text]}>{data.artist.artistName}</CustomText>
+          <CustomText style={[styles.textItem]}>{data.count} items</CustomText>
         </LinearGradient>
       </View>
     </View>

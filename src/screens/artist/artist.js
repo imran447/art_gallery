@@ -1,58 +1,57 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import Header from '../../shared/components/header';
 import {ScrollView} from 'react-native-gesture-handler';
 import ArtistCard from './artistCard';
-import {useState} from 'react';
+import { backendCall } from '../../shared/js/backendCall'
+import CustomButton from '../../shared/components/customButton';
+import GlobalStyles from '../../shared/styles/globalStyles';
 
 const Artist = () => {
-  const [artistList, setArtistList] = useState([
-    {
-      image: require('../../assets/images/artist1.jpg'),
-      name: 'Michelangelo',
-      item: 14,
-    },
-    {
-      image: require('../../assets/images/artist3.jpg'),
-      name: 'Rembrandt',
-      item: 4,
-    },
-    {
-      image: require('../../assets/images/artist2.jpg'),
-      name: 'Vermeer',
-      item: 14,
-    },
-    {
-      image: require('../../assets/images/artist1.jpg'),
-      name: 'Eugene ',
-      item: 44,
-    },
-    {
-      image: require('../../assets/images/artist3.jpg'),
-      name: 'Georges ',
-      item: 34,
-    },
-    {
-      image: require('../../assets/images/artist2.jpg'),
-      name: 'Claude',
-      item: 4,
-    },
-    {
-        image: require('../../assets/images/artist3.jpg'),
-        name: 'Georges ',
-        item: 34,
-      },
-  ]);
+  const [artistList, setArtistList] = useState([]);
+  const [offSet, setOffSet] = useState(0);
+
+  useEffect(() => {
+    getArtists();
+  },[offSet])
+
+  const getArtists = async () => {
+    const response = await backendCall(`arts/artist/?pageSize=2&offset=${offSet}`,"GET");
+    if (response && response?.data?.artistList?.length){
+      let artists = [];
+      if (artistList.length){
+        response.data.artistList.map((artist) => {
+          artists = [...artistList, artist];
+        })
+        setArtistList(artists);
+      }
+      else
+        setArtistList(response.data.artistList);
+    }
+  }
+
+  console.log("ARTIST LIST",artistList);
   return (
-    <View>
+    <View style={{borderWidth: 5, borderColor: 'green', flex: 1}}>
       <Header title={'Artists'} />
-      <ScrollView>
+      <ScrollView style={{borderWidth: 5, borderColor: 'blue'}}
+      contentContainerStyle={{
+        alignItems: 'center'
+      }}
+      >
         <View style={[styles.container]}>
-          {artistList.map(artist => {
-            return <ArtistCard artist={artist} />;
+          {artistList.map((artist,index) => {
+            return <ArtistCard key={index} data={artist} />;
           })}
         </View>
       </ScrollView>
+      <CustomButton
+        Title="View More"
+        // style={[GlobalStyles.mt3]}
+        contentStyle={[styles.viewMoreBtnWrapper]}
+        IsLoading={false}
+        onPress={() => { setOffSet(offSet + 1) }}
+      />
     </View>
   );
 };
@@ -63,7 +62,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 15,
     flexWrap: 'wrap',
-    marginBottom: 70,
+    // marginBottom: 70,
     justifyContent: 'space-between',
+    borderWidth: 2,
+    borderColor: 'red'
   },
+  viewMoreBtnWrapper : {
+    width : '50%',
+    marginTop: 20,
+    marginBottom: 10,
+    alignSelf: 'center'
+  }
 });

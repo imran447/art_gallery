@@ -7,6 +7,7 @@ import HeartIcon from '../assets/images/heart.svg';
 import DisplayFullScreenImage from '../shared/components/displayFullImage';
 import BottomSheet from '../shared/components/bottomSheet';
 import CommentList from './commentList';
+import environment from '../shared/js/environment';
 
 const WhiteBoardCard = ({painting, handleCommentList}) => {
   const refRBSheet = useRef(null);
@@ -26,12 +27,12 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
     <>
       <View style={[GlobalStyles.bgWhite, styles.container]}>
         <CustomText style={[GlobalStyles.heading, GlobalStyles.mb1]}>
-          {painting.name}
+          {painting.title}
         </CustomText>
         <Pressable onPress={handleDisplayImage}>
           <FastImage
             source={{
-              uri: painting.image,
+              uri: environment.serverUrl + painting.imagePath,
             }}
             style={[styles.imageStyle, GlobalStyles.mb1]}
             resizeMode={FastImage.resizeMode.cover}
@@ -40,10 +41,10 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
         <View style={[GlobalStyles.flexDirectionRow, styles.likeContainer]}>
           <View
             style={[GlobalStyles.flexDirectionRow, GlobalStyles.likeContainer]}>
-            <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
+            <CustomText style={[GlobalStyles.mR1]}>{painting.likeCount}</CustomText>
             <HeartIcon height={20} width={20} fill="black" />
           </View>
-          <Pressable onPress={handleComments}>
+          {/* <Pressable onPress={handleComments}>
             <View
               style={[
                 GlobalStyles.flexDirectionRow,
@@ -56,7 +57,7 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
                 style={{height: 20, width: 20}}
               />
             </View>
-          </Pressable>
+          </Pressable> */}
         </View>
       </View>
       {isDisplayFullImage && (
