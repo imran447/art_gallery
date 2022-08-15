@@ -23,7 +23,7 @@ const FavoritePaintingCard = ({
   const handleComments = () => {
     handleCommentList();
   };
-
+  console.log("FAV PAINTING CARD",painting);
   return (
     <>
       <View
@@ -34,7 +34,8 @@ const FavoritePaintingCard = ({
         <Pressable onPress={handleDisplayImage}>
           <FastImage
             source={{
-              uri: painting.image,
+              // uri: painting.image,
+              uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg'
             }}
             style={[styles.imageStyle, GlobalStyles.mb1]}
             resizeMode={FastImage.resizeMode.cover}
@@ -48,7 +49,7 @@ const FavoritePaintingCard = ({
               'rgba(0, 0, 0,0.6)',
             ]}
             style={styles.linearGradient}>
-            <CustomText style={{color: 'white',fontSize:18}}> {painting.name}</CustomText>
+            <CustomText style={{color: 'white',fontSize:18}}> {painting.title}</CustomText>
           </LinearGradient>
         </View>
       </View>
@@ -56,7 +57,8 @@ const FavoritePaintingCard = ({
         <DisplayFullScreenImage
           Images={[
             {
-              uri: painting.image,
+              // uri: painting.image,
+              uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg'
             },
           ]}
           HandleClose={closeFullImage}

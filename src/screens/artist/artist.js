@@ -12,7 +12,6 @@ const Artist = () => {
   const [artistList, setArtistList] = useState([]);
   const [offSet, setOffSet] = useState(0);
   const [loadMore, setLoadMore] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     getArtists();
@@ -33,7 +32,6 @@ const Artist = () => {
     setLoadMore(false);
   }
 
-  console.log("ARTIST LIST",artistList);
   return (
     <View style={[styles.mainWrapper]}>
       <Header title={'Artists'} />
