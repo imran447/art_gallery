@@ -8,21 +8,28 @@ import ForgotPassword from '../../screens/forgotPassword/forgotPassword';
 import Login from '../../screens/login/login';
 import Signup from '../../screens/signup/signup';
 import About from '../../screens/about/about';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
+  const token = AsyncStorage.getItem('token');
   return (
-    <>
       <Stack.Navigator
-        initialRouteFName="login"
+        initialRouteFName={token ? 'index' : 'login'}
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="index" component={Index} />
-        <Stack.Screen name="commentList" component={CommentList} />
-        <Stack.Screen name="forgotPassword" component={ForgotPassword} /> 
-        <Stack.Screen name="signup" component={Signup} />
-        <Stack.Screen name="about" component={About} />
+        {
+          !token ? <>
+          <Stack.Screen name="login" component={Login} />
+          <Stack.Screen name="commentList" component={CommentList} />
+          <Stack.Screen name="forgotPassword" component={ForgotPassword} /> 
+          <Stack.Screen name="signup" component={Signup} />
+          <Stack.Screen name="about" component={About} />
+          </>
+          :
+          <Stack.Screen name="index" component={Index} />
+        }
+        
         {/* <Stack.Screen name="dashboard" component={Dashboard} />
         <Stack.Screen name="addEditRecipients" component={AddEditRecipients} />
         <Stack.Screen name="recipientList" component={RecipientList} />
@@ -45,7 +52,6 @@ const StackNavigator = () => {
           </>
         )} */}
       </Stack.Navigator>
-    </>
   );
 };
 const SplashScreen = () => {

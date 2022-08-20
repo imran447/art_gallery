@@ -1,6 +1,7 @@
 import axios from "axios";
 import environment from "./environment";
-import showToastMessage from './showToastMessage';
+import {showToastMessage} from './showToastMessage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export const backendCall = async (
   url,
   method = "POST",
@@ -11,7 +12,7 @@ export const backendCall = async (
 ) => {
   const _headers = {
     "Content-Type": contentType,
-    Authorization: "Bearer " + localStorage.getItem("token") || "",
+    Authorization: "Bearer " + await AsyncStorage.getItem("token") || "",
   };
 
   let _response = "";

@@ -1,63 +1,43 @@
 import {ScrollView, View} from 'react-native';
 import Header from '../../shared/components/header';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FavoritePaintingCard from '../../components/favoritePaintingCard';
+import { backendCall } from '../../shared/js/backendCall';
+import { ActivityIndicator } from 'react-native-paper';
+import { showToastMessage } from '../../shared/js/showToastMessage';
+
 import {styles} from './favoritePainting.module';
 import CustomText from '../../shared/components/customText';
 import GlobalStyles from '../../shared/styles/globalStyles';
 
 const FavoritePainting = () => {
-  const [paintings, setPaintings] = useState([
-    {
-      name: 'Art Gallery',
-      image:
-        'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-      width: '39%',
-    },
-    {
-      name: 'Sketch',
-      image: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
-      width: '58%',
-    },
-    {
-      name: 'Painting',
-      image:
-        'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-      width: '49%',
+  const [paintings, setPaintings] = useState([]);
+  const [offSet, setOffSet] = useState(0);
+  const [loadMore, setLoadMore] = useState(false);
 
-    },
-    {
-      name: 'Arts',
-      image: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
-      width: '49%',
+  useEffect(() => {
+    fetchPaintings();
+  },[offSet])
 
-    },
-    {
-      name: 'Art Gallery',
-      image:
-        'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-      width: '58%',
+  const fetchPaintings = async () => {
+    const response = await backendCall(`arts/favoritePainting/?pageSize=10&offset=${offSet}`,"GET");
+    console.log("RESPONSE", response);
+    if (response && response?.data?.data?.length){
+      let paintingList = [];
+      response.data.data.map((painting) => {
+        console.log("RESPONSE SINGLE PAINTING",painting)
+        paintingList = [...paintings, painting];
+      })
+      console.log("LIST TO BE PUT IN STATE",paintingList);
+      setPaintings(paintingList);
+    }
+    else if (response?.data?.data.length === 0){
+      showToastMessage("error","top", "No more records available");
+    }
+    // setLoadMore(false);
+  }
 
-    },
-    {
-      name: 'Sketch',
-      image: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
-
-      width: '39%',
-
-    },
-    {
-      name: 'Painting',
-      image:
-        'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg',
-    },
-    {
-      name: 'Arts',
-      image: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
-      width: '100%',
-
-    },
-  ]);
+  console.log("RENDER PAINTINGS LIST",paintings);
   return (
     <View>
       <Header title={'Library'} />
@@ -67,11 +47,13 @@ const FavoritePainting = () => {
           Favorite Painting
         </CustomText>
         <View style={[styles.paintings, GlobalStyles.mt2]}>
-          {paintings.map(painting => {
+          {paintings.map((painting,index) => {
+            console.log("PAINTING",painting)
             return (
               <FavoritePaintingCard
+                key={index}
                 painting={painting}
-                containerWidth={painting.width}
+                containerWidth={ index % 2 === 0 ? "40%" : "55%"}
               />
             );
           })}

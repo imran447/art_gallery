@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState} from 'react';
+import { showToastMessage } from '../../shared/js/showToastMessage'
+import { backendCall } from '../../shared/js/backendCall'
 
 import {
   KeyboardAvoidingView,
@@ -26,10 +28,24 @@ const Login = ({navigation}) => {
   const handleFogotPassword = () => {
     navigation.navigate('forgotPassword');
   };
+
   const handleLogin = async () => {
-    await AsyncStorage.setItem('token', '12345');
-    navigation.push('index');
+    if (!emailOrPhone || !password)
+    {
+      showToastMessage("error","top", "Please enter a valid email/password");
+      return;
+    }
+    const body = {
+      email : emailOrPhone,
+      password
+    }
+    const response = await backendCall("auth/login","POST",body);
+    if (response && response?.data?.token){
+      await AsyncStorage.setItem('token', response.data.token);
+      navigation.push('index');
+    }
   };
+
   const handleSignup = () => {
     navigation.navigate('signup');
   };

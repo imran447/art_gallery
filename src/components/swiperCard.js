@@ -4,7 +4,12 @@ import {Image, StyleSheet, View} from 'react-native';
 const SwiperCard = ({card}) => {
   return (
     <View style={styles.card}>
-      <Image source={card.image} style={styles.image}  />
+      <Image source={
+         // environment.serverUrl + card.imagePath
+         require('../assets/images/1.jpg')
+      }
+        style={styles.image}
+      />
     </View>
   );
 };
