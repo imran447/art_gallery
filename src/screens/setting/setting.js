@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {ScrollView, View} from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Header from '../../shared/components/header';
@@ -10,14 +10,33 @@ import CustomText from '../../shared/components/customText';
 import AboutusIcon from '../../assets/images/info.svg';
 import LogoutIcon from '../../assets/images/logout.svg';
 import RightArrowIcon from '../../assets/images/rightArrow.svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsFocused } from '@react-navigation/native';
+import { AuthContext } from '../../shared/js/auth-context';
 
 const Setting = ({navigation}) => {
+  const [token, setToken] = useContext(AuthContext);
+  const [user, setUser] = useState({});
+  const isFocused = useIsFocused();
+
   const handleLoginPage = () => {
     navigation.navigate('login');
   };
-  const handleLogout = () => {
-    navigation.navigate('login');
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('user');
+    setToken(null);
   };
+
+  useEffect(() => {
+    isFocused && getUser()
+  },[isFocused])
+
+  const getUser = async () => {
+    const user = await AsyncStorage.getItem('user');
+    if (user){
+      setUser(JSON.parse(user));
+    }
+  }
 
   return (
     <View style={[{flex: 1}]}>
@@ -38,33 +57,45 @@ const Setting = ({navigation}) => {
             </Pressable>
 
             <View style={styles.profileNames}>
-              <CustomText
-                style={{
-                  fontSize: 17,
-                  fontWeight: 'bold',
-                  color: 'white',
-                }}>
-                {`Daniel`}
-              </CustomText>
-              <CustomText
+              <View style={{
+                flexDirection: 'row'
+              }}>
+                <CustomText
+                  style={{
+                    fontSize: 17,
+                    fontWeight: 'bold',
+                    color: 'white',
+                  }}>
+                  {user.firstName}
+                </CustomText>
+                <CustomText
+                  style={{
+                    fontSize: 17,
+                    fontWeight: 'bold',
+                    color: 'white',
+                    marginLeft: 5
+                  }}>
+                  {user.lastName}
+                </CustomText>
+              </View>
+              {/* <CustomText
                 style={{
                   fontSize: 14,
                   marginTop: 5,
                   color: 'white',
                 }}>
                 {'+9246854465'}
-              </CustomText>
+              </CustomText> */}
               <CustomText
                 style={{
                   fontSize: 14,
-                  marginTop: -4,
                   color: 'white',
                 }}>
-                {`daniel@gmail.com`}
+                {user.email}
               </CustomText>
             </View>
-            <Pressable>
-              {/* <CustomText style={styles.editButton}>Edit</CustomText> */}
+            <Pressable onPress={() => navigation.navigate("editUser")}>
+              <CustomText style={styles.editButton}>Edit</CustomText>
             </Pressable>
           </View>
 

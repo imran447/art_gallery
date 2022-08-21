@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -9,11 +9,24 @@ import Login from '../../screens/login/login';
 import Signup from '../../screens/signup/signup';
 import About from '../../screens/about/about';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import GlobalStyles from '../styles/globalStyles';
+import { AuthContext } from '../js/auth-context';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
-  const token = AsyncStorage.getItem('token');
+  const [token, setToken] = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+     setTimeout(() => {
+      setIsLoading(false);
+     }, 1000)
+  }, [])
+  
+  if (isLoading){
+    return <SplashScreen />
+  }
+
   return (
       <Stack.Navigator
         initialRouteFName={token ? 'index' : 'login'}
@@ -25,32 +38,9 @@ const StackNavigator = () => {
           <Stack.Screen name="forgotPassword" component={ForgotPassword} /> 
           <Stack.Screen name="signup" component={Signup} />
           <Stack.Screen name="about" component={About} />
-          </>
-          :
+          </> :
           <Stack.Screen name="index" component={Index} />
         }
-        
-        {/* <Stack.Screen name="dashboard" component={Dashboard} />
-        <Stack.Screen name="addEditRecipients" component={AddEditRecipients} />
-        <Stack.Screen name="recipientList" component={RecipientList} />
-        
-        
-        */}
-
-        {/* {context.userToken ? (
-          <>
-            <Stack.Screen name="Home" component={DrawerNavigator} />
-            </>
-        ) : context.didMount ? (
-          <>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="SplashScreen" component={SplashScreen} />
-          </>
-        )} */}
       </Stack.Navigator>
   );
 };
@@ -70,7 +60,7 @@ const SplashScreen = () => {
           resizeMode: 'contain',
         }}
       /> */}
-      {/* <ActivityIndicator size="small" color={GlobalStyles.primaryColor.color} /> */}
+      <ActivityIndicator size="small" color={GlobalStyles.primaryColor.color} />
     </View>
   );
 };

@@ -2,8 +2,8 @@ import {Image, View} from 'react-native';
 import React from 'react';
 import CustomText from '../../shared/components/customText';
 import {styles} from './index.module';
-import GlobalStyles from '../../shared/styles/globalStyles';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import WhiteBoard from '../whiteBoard/whiteBoard';
 import FavoritePainting from '../favoritePainting/favoritePainting';
 import Setting from '../setting/setting';
@@ -13,8 +13,21 @@ import SettingsIcon from '../../assets/images/settings.svg';
 import LibraryIcon from '../../assets/images/library.svg';
 import Arts from '../arts/arts';
 import Artist from '../artist/artist';
+import EditUser from '../editUser';
 
 const WhiteBoardTab = createBottomTabNavigator();
+const SettingsTab = createStackNavigator();
+
+function Settings() {
+  return (
+    <SettingsTab.Navigator
+      screenOptions={{headerShown: false}}
+    >
+      <SettingsTab.Screen name="index" component={Setting} />
+      <SettingsTab.Screen name="editUser" component={EditUser} />
+    </SettingsTab.Navigator>
+  );
+}
 
 const Index = () => {
   return (
@@ -88,7 +101,7 @@ const Index = () => {
       />
       <WhiteBoardTab.Screen
         name="Setting"
-        component={Setting}
+        component={Settings}
         options={{
           tabBarLabel: ({focused, color}) =>
             focused && (

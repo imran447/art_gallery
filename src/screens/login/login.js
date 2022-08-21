@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { showToastMessage } from '../../shared/js/showToastMessage'
 import { backendCall } from '../../shared/js/backendCall'
+import { AuthContext } from '../../shared/js/auth-context';
+
 
 import {
   KeyboardAvoidingView,
@@ -18,6 +20,7 @@ import GlobalStyles from '../../shared/styles/globalStyles';
 import {styles} from './login.module';
 
 const Login = ({navigation}) => {
+  const [token, setToken] = useContext(AuthContext);
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [password, setPassword] = useState('');
 
@@ -40,9 +43,9 @@ const Login = ({navigation}) => {
       password
     }
     const response = await backendCall("auth/login","POST",body);
-    if (response && response?.data?.token){
-      await AsyncStorage.setItem('token', response.data.token);
-      navigation.push('index');
+    if (response?.status === 1){
+      await AsyncStorage.setItem('user', JSON.stringify(response.data));
+      setToken(response.data.token);
     }
   };
 

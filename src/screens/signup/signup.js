@@ -13,19 +13,35 @@ import {ScrollView} from 'react-native-gesture-handler';
 import TextInputField from '../../shared/components/textInputField';
 import CustomButton from '../../shared/components/customButton';
 import CustomText from '../../shared/components/customText';
-import Header from '../../shared/components/header';
+import { backendCall } from '../../shared/js/backendCall'
+import { showToastMessage } from '../../shared/js/showToastMessage';
 
 const Signup = ({navigation}) => {
   const [termsServices, setTermsServices] = useState(false);
 
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFistName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     navigation.push('login');
   };
+
+  const handleSignup = async () => {
+    if (!firstName || !lastName || !email || !password)
+    {
+      showToastMessage("error","top", "Please fill all input fields");
+      return;
+    }
+    const body = {
+      firstName, lastName, email, password
+    }
+    const response = await backendCall("auth/register","POST",body);
+    if (response?.status === 1)
+      showToastMessage("success","top", "User registered successfully!");
+      navigation.push('login');
+  }
 
   return (
     <>
@@ -41,9 +57,15 @@ const Signup = ({navigation}) => {
                 <View>
                   <TextInputField
                     IsError={false}
-                    Label={'Full name'}
-                    placeholder="Full name"
-                    OnChangeText={value => setFullName(value)}
+                    Label={'First name'}
+                    placeholder="First name"
+                    OnChangeText={value => setFistName(value)}
+                  />
+                  <TextInputField
+                    IsError={false}
+                    Label={'Last name'}
+                    placeholder="Last name"
+                    OnChangeText={value => setLastName(value)}
                   />
                   <TextInputField
                     IsError={false}
@@ -66,7 +88,7 @@ const Signup = ({navigation}) => {
                     IsLoading={false}
                     Title={'Sign up'}
                     style={GlobalStyles.mt3}
-                    onPress={() => {}}
+                    onPress={handleSignup}
                   />
                   <View style={[styles.signupContainer]}>
                     <CustomText style={[styles.sigunpText]}>
