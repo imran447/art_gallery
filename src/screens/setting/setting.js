@@ -24,6 +24,7 @@ const Setting = ({navigation}) => {
   };
   const handleLogout = async () => {
     await AsyncStorage.removeItem('user');
+    await AsyncStorage.removeItem('token');
     setToken(null);
   };
 
@@ -45,7 +46,7 @@ const Setting = ({navigation}) => {
       <ScrollView>
         <>
           <View style={[styles.profileBox]}>
-            <Pressable onPress={() => {}}>
+            {/* <Pressable onPress={() => {}}>
               <FastImage
                 source={{
                   uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
@@ -54,7 +55,7 @@ const Setting = ({navigation}) => {
                 style={[styles.imageStyle]}
                 resizeMode={FastImage.resizeMode.cover}
               />
-            </Pressable>
+            </Pressable> */}
 
             <View style={styles.profileNames}>
               <View style={{
@@ -140,13 +141,13 @@ const Setting = ({navigation}) => {
               isLoading={false}
             />
           </View>
-          <View style={styles.planButtonContainer}>
+          {/* <View style={styles.planButtonContainer}>
             <CustomButton
               Title={'Try premium plan'}
               style={styles.planButton}
               onPress={handleLoginPage}
             />
-          </View>
+          </View> */}
         </>
       </ScrollView>
     </View>

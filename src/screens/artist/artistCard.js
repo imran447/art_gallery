@@ -7,10 +7,11 @@ import environment from '../../shared/js/environment';
 const ArtistCard = ({data}) => {
   return (
     <View style={[styles.card]}>
-      <Image source={
-        // environment.serverUrl + data.artist.artistImage
-        require('../../assets/images/artist1.jpg')
-      } style={[styles.image]} />
+      <Image
+        source={{uri: environment.serverUrl + data.artist.artistImage}}
+        onError
+        style={[styles.image]}
+      />
       <View style={[styles.bottomContainer]}>
         <LinearGradient
           colors={[
@@ -19,7 +20,9 @@ const ArtistCard = ({data}) => {
             'rgba(0, 0, 0,0.6)',
           ]}
           style={styles.linearGradient}>
-          <CustomText style={[styles.text]}>{data.artist.artistName}</CustomText>
+          <CustomText style={[styles.text]}>
+            {data.artist.artistName}
+          </CustomText>
           <CustomText style={[styles.textItem]}>{data.count} items</CustomText>
         </LinearGradient>
       </View>

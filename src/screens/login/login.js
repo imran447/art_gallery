@@ -23,6 +23,7 @@ const Login = ({navigation}) => {
   const [token, setToken] = useContext(AuthContext);
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading,setIsLoading]= useState(false);
 
   const handleBackNavigation = () => {
     navigation.pop();
@@ -42,9 +43,12 @@ const Login = ({navigation}) => {
       email : emailOrPhone,
       password
     }
+    setIsLoading(true);
     const response = await backendCall("auth/login","POST",body);
+    setIsLoading(false);
     if (response?.status === 1){
       await AsyncStorage.setItem('user', JSON.stringify(response.data));
+      await AsyncStorage.setItem('token', response.data.token);
       setToken(response.data.token);
     }
   };
@@ -78,17 +82,17 @@ const Login = ({navigation}) => {
                       style={[GlobalStyles.mt2]}
                       OnChangeText={value => setPassword(value)}
                     />
-                    <Pressable onPress={handleFogotPassword}>
+                    {/* <Pressable onPress={handleFogotPassword}>
                       <CustomText style={[styles.signup, GlobalStyles.mt2]}>
                         Forgot password?
                       </CustomText>
-                    </Pressable>
+                    </Pressable> */}
                   </View>
                   <View>
                     <CustomButton
                       Title={'Sign in'}
                       style={[GlobalStyles.mt3]}
-                      IsLoading={false}
+                      IsLoading={isLoading}
                       onPress={handleLogin}
                     />
                     <View style={[styles.signupContainer]}>

@@ -14,6 +14,7 @@ const WhiteBoard = ({navigation}) => {
   },[])
 
   const getArts = async () => {
+    console.log("response");
     const response = await backendCall("arts","GET");
     if (response && response?.data?.data?.length){
       setPaintings(response.data.data);

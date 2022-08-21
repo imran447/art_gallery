@@ -23,6 +23,7 @@ export const backendCall = async (
   })
     .then((response) => {
       _response = response.data;
+      console.log("asdf")
     })
     .catch((error) => {
       let _responseData = error.response.data;

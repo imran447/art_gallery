@@ -18,6 +18,7 @@ import { showToastMessage } from '../../shared/js/showToastMessage';
 
 const Signup = ({navigation}) => {
   const [termsServices, setTermsServices] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [firstName, setFistName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -37,7 +38,10 @@ const Signup = ({navigation}) => {
     const body = {
       firstName, lastName, email, password
     }
+    setIsLoading(true);
     const response = await backendCall("auth/register","POST",body);
+    setIsLoading(false);
+
     if (response?.status === 1)
       showToastMessage("success","top", "User registered successfully!");
       navigation.push('login');
@@ -85,7 +89,7 @@ const Signup = ({navigation}) => {
                 </View>
                 <View>
                   <CustomButton
-                    IsLoading={false}
+                    IsLoading={isLoading}
                     Title={'Sign up'}
                     style={GlobalStyles.mt3}
                     onPress={handleSignup}
