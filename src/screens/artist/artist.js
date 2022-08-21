@@ -18,18 +18,14 @@ const Artist = () => {
   },[offSet])
 
   const getArtists = async () => {
-    const response = await backendCall(`arts/artist/?pageSize=1&offset=${offSet}`,"GET");
-    if (response && response?.data?.artistList?.length){
-      let artists = [];
-      response.data.artistList.map((artist) => {
-        artists = [...artistList, artist];
-      })
-      setArtistList(artists);
+    const response = await backendCall(`arts/artist/?pageSize=10&offset=${offSet}`,"GET");
+    if (response?.data?.artistList?.length){
+        setArtistList([...artistList, ...response.data.artistList]);
     }
     else if (response?.data?.artistList.length === 0){
       showToastMessage("error","top", "No more records available");
     }
-    setLoadMore(false);
+    setLoadMore(false); 
   }
 
   return (
@@ -68,21 +64,15 @@ export default Artist;
 const styles = StyleSheet.create({
   mainWrapper : {
     flex: 1,
-    // borderWidth: 5,
-    // borderColor: 'green'
   },
   container: {
     flexDirection: 'row',
     padding: 15,
     flexWrap: 'wrap',
-    // marginBottom: 70,
     justifyContent: 'space-between',
-    // borderWidth: 5,
-    // borderColor: 'red'
   },
   viewMoreBtnWrapper : {
     width : '50%',
-    // marginTop: 20,
     marginBottom: 50,
     alignSelf: 'center'
   }

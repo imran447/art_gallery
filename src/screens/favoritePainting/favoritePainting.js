@@ -8,6 +8,7 @@ import { showToastMessage } from '../../shared/js/showToastMessage';
 
 import {styles} from './favoritePainting.module';
 import CustomText from '../../shared/components/customText';
+import CustomButton from '../../shared/components/customButton';
 import GlobalStyles from '../../shared/styles/globalStyles';
 
 const FavoritePainting = () => {
@@ -21,25 +22,17 @@ const FavoritePainting = () => {
 
   const fetchPaintings = async () => {
     const response = await backendCall(`arts/favoritePainting/?pageSize=10&offset=${offSet}`,"GET");
-    console.log("RESPONSE", response);
-    if (response && response?.data?.data?.length){
-      let paintingList = [];
-      response.data.data.map((painting) => {
-        console.log("RESPONSE SINGLE PAINTING",painting)
-        paintingList = [...paintings, painting];
-      })
-      console.log("LIST TO BE PUT IN STATE",paintingList);
-      setPaintings(paintingList);
+    if (response?.data?.count > 0){
+        setPaintings([...paintings, ...response.data.data]);
     }
-    else if (response?.data?.data.length === 0){
+    else if (response?.data?.count === 0){
       showToastMessage("error","top", "No more records available");
     }
-    // setLoadMore(false);
+    setLoadMore(false);
   }
 
-  console.log("RENDER PAINTINGS LIST",paintings);
   return (
-    <View>
+    <View style={[styles.mainWrapper]}>
       <Header title={'Library'} />
       <ScrollView style={styles.container}>
         <CustomText
@@ -48,7 +41,6 @@ const FavoritePainting = () => {
         </CustomText>
         <View style={[styles.paintings, GlobalStyles.mt2]}>
           {paintings.map((painting,index) => {
-            console.log("PAINTING",painting)
             return (
               <FavoritePaintingCard
                 key={index}
@@ -58,6 +50,21 @@ const FavoritePainting = () => {
             );
           })}
         </View>
+        {
+          paintings.length > 0 ?
+          loadMore ?
+          <ActivityIndicator />
+          :
+          <CustomButton
+            Title="View More"
+            contentStyle={[styles.viewMoreBtnWrapper]}
+            IsLoading={false}
+            onPress={() => {
+              setLoadMore(true);
+              setOffSet(offSet + 1)
+            }}
+          /> : null
+        }
       </ScrollView>
     </View>
   );

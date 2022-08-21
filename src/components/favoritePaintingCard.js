@@ -23,7 +23,6 @@ const FavoritePaintingCard = ({
   const handleComments = () => {
     handleCommentList();
   };
-  console.log("FAV PAINTING CARD",painting);
   return (
     <>
       <View
