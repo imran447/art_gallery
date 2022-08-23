@@ -32,8 +32,7 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
         <Pressable onPress={handleDisplayImage}>
           <FastImage
             source={
-              // { uri: environment.serverUrl + painting.imagePath}
-              {uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg'}
+              { uri: environment.serverUrl + painting.imagePath}
             }
             style={[styles.imageStyle, GlobalStyles.mb1]}
             resizeMode={FastImage.resizeMode.cover}

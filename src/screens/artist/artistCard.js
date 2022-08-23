@@ -3,15 +3,18 @@ import React from 'react';
 import CustomText from '../../shared/components/customText';
 import LinearGradient from 'react-native-linear-gradient';
 import environment from '../../shared/js/environment';
+import FastImage from 'react-native-fast-image';
 
 const ArtistCard = ({data}) => {
+  console.log(data);
   return (
     <View style={[styles.card]}>
-      <Image
+      <FastImage
         source={{uri: environment.serverUrl + data.artist.artistImage}}
-        onError
         style={[styles.image]}
+        resizeMode={FastImage.resizeMode.cover}
       />
+
       <View style={[styles.bottomContainer]}>
         <LinearGradient
           colors={[

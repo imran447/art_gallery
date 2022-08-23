@@ -4,9 +4,10 @@ import {Image, StyleSheet, View} from 'react-native';
 const SwiperCard = ({card}) => {
   return (
     <View style={styles.card}>
-      <Image
+       <FastImage
         source={{uri: environment.serverUrl + card.imagePath}}
-        style={styles.image}
+        style={[styles.image]}
+        resizeMode={FastImage.resizeMode.cover}
       />
     </View>
   );

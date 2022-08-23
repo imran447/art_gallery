@@ -5,6 +5,7 @@ import FastImage from 'react-native-fast-image';
 import GlobalStyles from '../shared/styles/globalStyles';
 import DisplayFullScreenImage from '../shared/components/displayFullImage';
 import LinearGradient from 'react-native-linear-gradient';
+import environment from '../shared/js/environment';
 
 const FavoritePaintingCard = ({
   painting,
@@ -32,10 +33,9 @@ const FavoritePaintingCard = ({
         ]}>
         <Pressable onPress={handleDisplayImage}>
           <FastImage
-            source={{
-              // uri: painting.image,
-              uri: 'https://cdn.pixabay.com/photo/2017/08/17/10/47/paris-2650808_960_720.jpg'
-            }}
+            source={
+              { uri: environment.serverUrl + painting.imagePath}
+            }
             style={[styles.imageStyle, GlobalStyles.mb1]}
             resizeMode={FastImage.resizeMode.cover}
           />
