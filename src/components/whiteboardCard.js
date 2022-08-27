@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     width: '100%',
-    height: 180,
+    height: 140,
     borderRadius: 5,
   },
   likeContainer: {

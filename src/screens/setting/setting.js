@@ -102,7 +102,7 @@ const Setting = ({navigation}) => {
 
           <View style={{marginTop: 20, padding: 15, borderRadius: 4}}>
             <RedirectTab
-              text={'About art gallery'}
+              text={'About beauty art'}
               onPress={() => navigation.navigate("about")}
               LeftIcon={() => (
                 <AboutusIcon

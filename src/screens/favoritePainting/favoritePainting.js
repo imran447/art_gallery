@@ -33,7 +33,7 @@ const FavoritePainting = () => {
 
   return (
     <View style={[styles.mainWrapper]}>
-      <Header title={'Library'} />
+      <Header title={'Collection'} />
       <ScrollView style={styles.container}>
         <CustomText
           style={[GlobalStyles.heading, {fontSize: 22}, GlobalStyles.mt1]}>
