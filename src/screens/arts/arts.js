@@ -60,8 +60,8 @@ const Arts = () => {
         </View>
       </View>
       <View style={[styles.bottomContainer, GlobalStyles.mb3]}>
-        <CustomButton Title={'Remove'} />
-        <CustomButton Title={'Collection'} />
+        <CustomButton Title={'Discard'} />
+        <CustomButton Title={'Save'} />
       </View>
     </>
   );

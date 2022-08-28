@@ -44,7 +44,7 @@ const Index = () => {
           tabBarLabel: ({focused, color}) =>
             focused && (
               <CustomText style={styles.bottomNavigatorLabel}>
-                WhiteBoard
+                Popular
               </CustomText>
             ),
           tabBarIcon: ({focused, color, size}) => (
@@ -88,7 +88,7 @@ const Index = () => {
           tabBarLabel: ({focused, color}) =>
             focused && (
               <CustomText style={styles.bottomNavigatorLabel}>
-                Artist
+                Artists
               </CustomText>
             ),
           tabBarIcon: ({focused, color, size}) => (
