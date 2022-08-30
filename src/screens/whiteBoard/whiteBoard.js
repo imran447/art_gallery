@@ -37,7 +37,7 @@ const WhiteBoard = ({navigation}) => {
   };
   return (
     <View>
-      <Header title={'Whiteboard'} />
+      <Header title={'Popular'} />
 
       <TextInputField
         placeholder={'Enter to search'}

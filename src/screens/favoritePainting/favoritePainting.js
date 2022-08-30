@@ -37,7 +37,7 @@ const FavoritePainting = () => {
       <ScrollView style={styles.container}>
         <CustomText
           style={[GlobalStyles.heading, {fontSize: 22}, GlobalStyles.mt1]}>
-          Favorite Painting
+          Favorite Paintings
         </CustomText>
         <View style={[styles.paintings, GlobalStyles.mt2]}>
           {paintings.map((painting,index) => {

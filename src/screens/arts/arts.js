@@ -32,7 +32,7 @@ const Arts = () => {
 
   return (
     <>
-      <CustomText style={[GlobalStyles.heading,styles.title]}>Swipe a painting</CustomText>
+      <CustomText style={[GlobalStyles.heading,styles.title]}>Swipe right to save</CustomText>
       <View style={styles.container}>
         <View>
           {
