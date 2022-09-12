@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     paddingBottom:5
   },
   bottomNavigatorLabel:{
-    color:'white'
+    color:'white',
+    fontSize:12
   },
 });

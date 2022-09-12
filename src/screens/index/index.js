@@ -95,7 +95,7 @@ const Index = () => {
           tabBarLabel: ({focused, color}) =>
             focused && (
               <CustomText style={styles.bottomNavigatorLabel}>
-                Slideshow
+                Fun fact
               </CustomText>
             ),
           tabBarIcon: ({focused, color, size}) => (

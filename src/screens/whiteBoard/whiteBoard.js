@@ -16,6 +16,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import CustomFilter from '../../shared/components/customFilter';
 import FeaturedIcon from '../../assets/images/featured.svg';
 import PopularIcon from '../../assets/images/popular.svg';
+import CollectionIcon from '../../assets/images/library.svg';
 import HighResolutionIcon from '../../assets/images/high-resolution.svg';
 
 const filtersList = [
@@ -33,6 +34,11 @@ const filtersList = [
     key: "highResolution",
     value: "High Resolution",
     image: <HighResolutionIcon height={20} width={20} fill={GlobalStyles.primary} />
+  },
+  {
+    key: "collection",
+    value: "Collection",
+    image: <CollectionIcon height={20} width={20} fill={GlobalStyles.primary} />
   }
 ]
 
