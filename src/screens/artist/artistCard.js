@@ -6,7 +6,6 @@ import environment from '../../shared/js/environment';
 import FastImage from 'react-native-fast-image';
 
 const ArtistCard = ({data}) => {
-  console.log(data);
   return (
     <View style={[styles.card]}>
       <FastImage

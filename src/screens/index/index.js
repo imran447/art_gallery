@@ -11,9 +11,11 @@ import WhiteBoardIcon from '../../assets/images/whiteboard.svg';
 import PhotoIcon from '../../assets/images/photo.svg';
 import SettingsIcon from '../../assets/images/settings.svg';
 import LibraryIcon from '../../assets/images/library.svg';
+import SlideshowIcon from '../../assets/images/slideShowIcon.svg';
 import Arts from '../arts/arts';
 import Artist from '../artist/artist';
 import EditUser from '../editUser';
+import Slideshow from '../slideShow/slideShow';
 
 const WhiteBoardTab = createBottomTabNavigator();
 const SettingsTab = createStackNavigator();
@@ -38,6 +40,20 @@ const Index = () => {
       }}
       screenOptions={{headerShown: false}}>
       <WhiteBoardTab.Screen
+        name="arts"
+        component={Arts}
+        options={{
+          tabBarLabel: ({focused, color}) =>
+            focused && (
+              <CustomText style={styles.bottomNavigatorLabel}>Arts</CustomText>
+            ),
+          tabBarIcon: ({focused, color, size}) => (
+            <PhotoIcon height={20} width={20} fill="white" />
+          ),
+        }}
+      />
+
+      <WhiteBoardTab.Screen
         name="Whiteboard"
         component={WhiteBoard}
         options={{
@@ -49,6 +65,41 @@ const Index = () => {
             ),
           tabBarIcon: ({focused, color, size}) => (
             <WhiteBoardIcon height={20} width={20} fill="white" />
+          ),
+        }}
+      />
+
+      <WhiteBoardTab.Screen
+        name="artist"
+        component={Artist}
+        options={{
+          tabBarLabel: ({focused, color}) =>
+            focused && (
+              <CustomText style={styles.bottomNavigatorLabel}>
+                Artists
+              </CustomText>
+            ),
+          tabBarIcon: ({focused, color, size}) => (
+            <Image
+              source={require('../../assets/images/make-up.png')}
+              style={{height: 30, width: 30}}
+            />
+          ),
+        }}
+      />
+
+      <WhiteBoardTab.Screen
+        name="Slideshow"
+        component={Slideshow}
+        options={{
+          tabBarLabel: ({focused, color}) =>
+            focused && (
+              <CustomText style={styles.bottomNavigatorLabel}>
+                Slideshow
+              </CustomText>
+            ),
+          tabBarIcon: ({focused, color, size}) => (
+            <SlideshowIcon height={20} width={20} fill="white" />
           ),
         }}
       />
@@ -68,37 +119,7 @@ const Index = () => {
           ),
         }}
       />
-      <WhiteBoardTab.Screen
-        name="arts"
-        component={Arts}
-        options={{
-          tabBarLabel: ({focused, color}) =>
-            focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>Arts</CustomText>
-            ),
-          tabBarIcon: ({focused, color, size}) => (
-            <PhotoIcon height={20} width={20} fill="white" />
-          ),
-        }}
-      />
-      <WhiteBoardTab.Screen
-        name="artist"
-        component={Artist}
-        options={{
-          tabBarLabel: ({focused, color}) =>
-            focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>
-                Artists
-              </CustomText>
-            ),
-          tabBarIcon: ({focused, color, size}) => (
-            <Image
-              source={require('../../assets/images/make-up.png')}
-              style={{height: 30, width: 30}}
-            />
-          ),
-        }}
-      />
+     
       <WhiteBoardTab.Screen
         name="Setting"
         component={Settings}

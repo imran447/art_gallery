@@ -7,33 +7,44 @@ import CustomButton from '../../shared/components/customButton';
 import CustomText from '../../shared/components/customText';
 import GlobalStyles from '../../shared/styles/globalStyles';
 import {styles} from './arts.module';
+import RecordNotFound from '../../components/RecordNotFound';
+import CustomLoader from '../../shared/components/CustomLoader';
+import { useIsFocused } from '@react-navigation/native';
 
 const Arts = () => {
   const [artsList, setArtsList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    fetchArtsList();
-  },[])
+    isFocused && fetchArtsList()
+  },[isFocused])
 
   const fetchArtsList = async () => {
     const response = await backendCall(`arts/randomArts`,"GET");
     if (response && response?.data?.data?.length){
       setArtsList(response.data.data);
     }
+    setLoading(false);
   }
 
   const handleSwipeLike = async (cardIndex) => {
     const data = artsList.find((data,index) =>  index === cardIndex);
     if (data){
       const response = await backendCall(`arts/likeArt/${data._id}`,"POST");
-      console.log("RESPONSE",response);
     }
   }
 
   return (
     <>
       <CustomText style={[GlobalStyles.heading,styles.title]}>Swipe right to save</CustomText>
-      <View style={styles.container}>
+      {
+        loading ?
+        <CustomLoader />
+        :
+        artsList.length > 0 ?
+        <>
+        <View style={styles.container}>
         <View>
           {
             artsList.length > 0 ? 
@@ -45,13 +56,11 @@ const Arts = () => {
               return <SwiperCard card={card} />;
             }}
             onSwiped={cardIndex => {
-              console.log(cardIndex);
             }}
             onSwipedRight={cardIndex => {
               handleSwipeLike(cardIndex);
             }}
             onSwipedAll={() => {
-              console.log('onSwipedAll');
             }}
             cardIndex={0}
             stackSize={artsList.length}
@@ -63,6 +72,10 @@ const Arts = () => {
         <CustomButton Title={'Discard'} />
         <CustomButton Title={'Save'} />
       </View>
+      </>
+      :
+      <RecordNotFound />
+      }
     </>
   );
 };

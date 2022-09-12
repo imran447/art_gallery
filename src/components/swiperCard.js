@@ -1,5 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import environment from '../shared/js/environment';
 
 const SwiperCard = ({card}) => {
   return (

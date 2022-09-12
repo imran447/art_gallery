@@ -11,6 +11,7 @@ const FavoritePaintingCard = ({
   painting,
   handleCommentList,
   containerWidth,
+  customImageStyle
 }) => {
   const refRBSheet = useRef(null);
   const [isDisplayFullImage, setIsDisplayFullImage] = useState(false);
@@ -36,7 +37,7 @@ const FavoritePaintingCard = ({
             source={
               { uri: environment.serverUrl + painting.imagePath}
             }
-            style={[styles.imageStyle, GlobalStyles.mb1]}
+            style={[styles.imageStyle, GlobalStyles.mb1, customImageStyle]}
             resizeMode={FastImage.resizeMode.cover}
           />
         </Pressable>

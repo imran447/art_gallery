@@ -7,11 +7,14 @@ import { backendCall } from '../../shared/js/backendCall'
 import CustomButton from '../../shared/components/customButton';
 import { ActivityIndicator } from 'react-native-paper';
 import { showToastMessage } from '../../shared/js/showToastMessage';
+import RecordNotFound from '../../components/RecordNotFound';
+import CustomLoader from '../../shared/components/CustomLoader';
 
 const Artist = () => {
   const [artistList, setArtistList] = useState([]);
   const [offSet, setOffSet] = useState(0);
   const [loadMore, setLoadMore] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getArtists();
@@ -26,15 +29,18 @@ const Artist = () => {
       showToastMessage("error","top", "No more records available");
     }
     setLoadMore(false); 
+    setLoading(false);
   }
 
   return (
     <View style={[styles.mainWrapper]}>
       <Header title={'Artists'} />
-      <ScrollView style={{
-        // borderWidth: 5, borderColor: 'blue'
-      }}
-      >
+      {
+        loading ?
+        <CustomLoader />
+        :
+        artistList.length > 0 ?
+        <ScrollView>
         <View style={[styles.container]}>
           {artistList.map((artist,index) => {
             return <ArtistCard key={index} data={artist} />;
@@ -56,6 +62,9 @@ const Artist = () => {
           /> : null
         }
       </ScrollView>
+      :
+      <RecordNotFound />
+      }
     </View>
   );
 };
