@@ -1,20 +1,23 @@
 import React, { useEffect, useState, useContext } from 'react';
-import {ScrollView, View} from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Header from '../../shared/components/header';
-import {styles} from './setting.module';
+import { styles } from './setting.module';
 import FastImage from 'react-native-fast-image';
 import RedirectTab from '../../components/redirectTab';
 import CustomButton from '../../shared/components/customButton';
 import CustomText from '../../shared/components/customText';
 import AboutusIcon from '../../assets/images/info.svg';
+import EraserIcon from '../../assets/images/erase.svg';
+import VersionIcon from '../../assets/images/version.svg';
+import EditProfileIcon from '../../assets/images/user.svg';
 import LogoutIcon from '../../assets/images/logout.svg';
 import RightArrowIcon from '../../assets/images/rightArrow.svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 import { AuthContext } from '../../shared/js/auth-context';
 
-const Setting = ({navigation}) => {
+const Setting = ({ navigation }) => {
   const [token, setToken] = useContext(AuthContext);
   const [user, setUser] = useState({});
   const isFocused = useIsFocused();
@@ -30,23 +33,26 @@ const Setting = ({navigation}) => {
 
   useEffect(() => {
     isFocused && getUser()
-  },[isFocused])
+  }, [isFocused])
 
   const getUser = async () => {
     const user = await AsyncStorage.getItem('user');
-    if (user){
+    if (user) {
       setUser(JSON.parse(user));
     }
   }
 
+  const handleCleanCache = () => {
+
+  }
   return (
-    <View style={[{flex: 1}]}>
+    <View style={[{ flex: 1 }]}>
       <Header title="Settings" />
 
-      <ScrollView>
+      <ScrollView contentContainerStyle={{backgroundColor:'white',flex:1}}>
         <>
-          <View style={[styles.profileBox]}>
-            {/* <Pressable onPress={() => {}}>
+          {/* <View style={[styles.profileBox]}>
+            <Pressable onPress={() => {}}>
               <FastImage
                 source={{
                   uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
@@ -55,7 +61,7 @@ const Setting = ({navigation}) => {
                 style={[styles.imageStyle]}
                 resizeMode={FastImage.resizeMode.cover}
               />
-            </Pressable> */}
+            </Pressable>
 
             <View style={styles.profileNames}>
               <View style={{
@@ -79,14 +85,14 @@ const Setting = ({navigation}) => {
                   {user.lastName}
                 </CustomText>
               </View>
-              {/* <CustomText
+              <CustomText
                 style={{
                   fontSize: 14,
                   marginTop: 5,
                   color: 'white',
                 }}>
                 {'+9246854465'}
-              </CustomText> */}
+              </CustomText>
               <CustomText
                 style={{
                   fontSize: 14,
@@ -98,14 +104,52 @@ const Setting = ({navigation}) => {
             <Pressable onPress={() => navigation.navigate("editUser")}>
               <CustomText style={styles.editButton}>Edit</CustomText>
             </Pressable>
-          </View>
+          </View> */}
 
-          <View style={{marginTop: 20, padding: 15, borderRadius: 4}}>
+          <View style={{ marginTop: 20,  borderRadius: 4 }}>
+            <RedirectTab
+              text={'Edit profile'}
+              onPress={() => navigation.navigate("editUser")}
+              LeftIcon={() => (
+                <EditProfileIcon
+                  width={styles.iconSize.width}
+                  height={styles.iconSize.height}
+                  fill={'black'}
+                />
+              )}
+              RightIcon={() => (
+                <RightArrowIcon
+                  style={styles.arrowIcon}
+                  width={styles.arrowIcon.width}
+                  height={styles.arrowIcon.height}
+                  fill={'black'}
+                />
+              )}
+            />
             <RedirectTab
               text={'About beauty of art'}
               onPress={() => navigation.navigate("about")}
               LeftIcon={() => (
                 <AboutusIcon
+                  width={styles.iconSize.width}
+                  height={styles.iconSize.height}
+                  fill={'black'}
+                />
+              )}
+              RightIcon={() => (
+                <RightArrowIcon
+                  style={styles.arrowIcon}
+                  width={styles.arrowIcon.width}
+                  height={styles.arrowIcon.height}
+                  fill={'black'}
+                />
+              )}
+            />
+            <RedirectTab
+              text={'Clean cache'}
+              onPress={handleCleanCache}
+              LeftIcon={() => (
+                <EraserIcon
                   width={styles.iconSize.width}
                   height={styles.iconSize.height}
                   fill={'black'}
@@ -140,14 +184,21 @@ const Setting = ({navigation}) => {
               )}
               isLoading={false}
             />
-          </View>
-          {/* <View style={styles.planButtonContainer}>
-            <CustomButton
-              Title={'Try premium plan'}
-              style={styles.planButton}
-              onPress={handleLoginPage}
+            <RedirectTab
+              text={'Version 1.1'}
+              onPress={() => { }}
+              LeftIcon={() => (
+                <VersionIcon
+                  width={styles.iconSize.width}
+                  height={styles.iconSize.height}
+                  fill={'black'}
+                />
+              )}
+              RightIcon={() => { }}
+              isLoading={false}
             />
-          </View> */}
+
+          </View>
         </>
       </ScrollView>
     </View>

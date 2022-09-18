@@ -11,7 +11,7 @@ export default function RedirectTab({text, onPress, isLoading,LeftIcon ,RightIco
       <TouchableRipple
         onPress={onPress}
         rippleColor={GlobalStyles.primary}
-        style={[styles.selectTrack, {paddingVertical: 7}]}>
+        style={[styles.selectTrack, {paddingVertical: 2}]}>
         <>
           <View style={styles.selectedTrackBox}>
             <LeftIcon />
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor:'white',
-    marginBottom:10
+    borderBottomColor:'#C8C8C8',
+    borderBottomWidth:0.8,
   },
   selectedTrackBox: {
     flexDirection: 'row',
@@ -57,9 +58,9 @@ const styles = StyleSheet.create({
     width: 14,
   },
   openCustomText: {
-    fontSize: 17,
+    fontSize: 15,
     marginLeft: 15,
-    fontWeight: 'bold',
+    fontWeight: '400',
     marginTop: 1,
   },
 });
