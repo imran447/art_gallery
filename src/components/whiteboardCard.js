@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import {Image, Pressable, StyleSheet, View} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import CustomText from '../shared/components/customText';
 import FastImage from 'react-native-fast-image';
 import GlobalStyles from '../shared/styles/globalStyles';
@@ -8,8 +8,10 @@ import DisplayFullScreenImage from '../shared/components/displayFullImage';
 import BottomSheet from '../shared/components/bottomSheet';
 import CommentList from './commentList';
 import environment from '../shared/js/environment';
+import LinearGradient from 'react-native-linear-gradient';
 
-const WhiteBoardCard = ({painting, handleCommentList}) => {
+
+const WhiteBoardCard = ({ painting, handleCommentList }) => {
   const refRBSheet = useRef(null);
   const [isDisplayFullImage, setIsDisplayFullImage] = useState(false);
 
@@ -25,7 +27,7 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
 
   return (
     <>
-      <View style={[GlobalStyles.bgWhite, styles.container]}>
+      {/* <View style={[GlobalStyles.bgWhite, styles.container]}>
         <CustomText style={[GlobalStyles.heading, GlobalStyles.mb1]}>
           {painting.title}
         </CustomText>
@@ -44,20 +46,6 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
             <CustomText style={[GlobalStyles.mR1]}>{painting.likeCount}</CustomText>
             <HeartIcon height={20} width={20} fill="black" />
           </View>
-          {/* <Pressable onPress={handleComments}>
-            <View
-              style={[
-                GlobalStyles.flexDirectionRow,
-                GlobalStyles.likeContainer,
-                {marginLeft: 10},
-              ]}>
-              <CustomText style={[GlobalStyles.mR1]}>2</CustomText>
-              <Image
-                source={require('../assets/images/comment.png')}
-                style={{height: 20, width: 20}}
-              />
-            </View>
-          </Pressable> */}
         </View>
       </View>
       {isDisplayFullImage && (
@@ -69,6 +57,42 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
           ]}
           HandleClose={closeFullImage}
         />
+      )} */}
+      <View style={[styles.card]}>
+        <Pressable onPress={handleDisplayImage}>
+          <FastImage
+            source={
+              { uri: environment.serverUrl + painting.imagePath }
+            }
+            style={[styles.image]}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+        </Pressable>
+
+        <View style={[styles.bottomContainer]}>
+          <LinearGradient
+            colors={[
+              'rgba(0, 0, 0,0.5)',
+              'rgba(0, 0,0,0.6)',
+              'rgba(0, 0, 0,0.6)',
+            ]}
+            style={styles.linearGradient}>
+            <CustomText style={[styles.text]}>
+              {painting.title}
+            </CustomText>
+            <CustomText style={[styles.textItem]}>{painting.likeCount} likes</CustomText>
+          </LinearGradient>
+        </View>
+      </View>
+      {isDisplayFullImage && (
+        <DisplayFullScreenImage
+          Images={[
+            {
+              uri:  environment.serverUrl + painting.imagePath ,
+            },
+          ]}
+          HandleClose={closeFullImage}
+        />
       )}
     </>
   );
@@ -76,17 +100,46 @@ const WhiteBoardCard = ({painting, handleCommentList}) => {
 export default WhiteBoardCard;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    borderRadius: 10,
+  // container: {
+  //   padding: 10,
+  //   borderRadius: 10,
+  //   marginBottom: 10,
+  // },
+  // imageStyle: {
+  //   width: '100%',
+  //   height: 140,
+  //   borderRadius: 5,
+  // },
+  // likeContainer: {
+  //   alignItems: 'center',
+  // },
+  card: {
+    height: 200,
+    position: 'relative',
+    width: '49.8%',
     marginBottom: 10,
   },
-  imageStyle: {
+  image: {
+    height: '100%',
     width: '100%',
-    height: 140,
-    borderRadius: 5,
   },
-  likeContainer: {
-    alignItems: 'center',
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingVertical: 2,
+  },
+  bottomContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+  },
+  text: {
+    color: 'white',
+    fontSize: 19,
+  },
+  textItem: {
+    marginTop: -3,
+    fontSize: 14,
+    color: '#FCFCFC',
   },
 });

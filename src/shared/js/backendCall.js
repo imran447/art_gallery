@@ -25,6 +25,7 @@ export const backendCall = async (
       _response = response.data;
     })
     .catch((error) => {
+      console.log("error herer",error)
       let _responseData = error.response.data;
       if (!_responseData.status) {
         showToastMessage("error","top", _responseData.message);

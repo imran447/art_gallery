@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
     // marginBottom:120
   },
   paintings:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     marginBottom:70
   },
   filtersContainer : {

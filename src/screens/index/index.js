@@ -60,7 +60,7 @@ const Index = () => {
           tabBarLabel: ({focused, color}) =>
             focused && (
               <CustomText style={styles.bottomNavigatorLabel}>
-                Popular
+                Artwork
               </CustomText>
             ),
           tabBarIcon: ({focused, color, size}) => (
@@ -95,7 +95,7 @@ const Index = () => {
           tabBarLabel: ({focused, color}) =>
             focused && (
               <CustomText style={styles.bottomNavigatorLabel}>
-                Fun fact
+               Slide show
               </CustomText>
             ),
           tabBarIcon: ({focused, color, size}) => (
@@ -104,22 +104,7 @@ const Index = () => {
         }}
       />
 
-      <WhiteBoardTab.Screen
-        name="library"
-        component={FavoritePainting}
-        options={{
-          tabBarLabel: ({focused, color}) =>
-            focused && (
-              <CustomText style={styles.bottomNavigatorLabel}>
-                Collection
-              </CustomText>
-            ),
-          tabBarIcon: ({focused, color, size}) => (
-            <LibraryIcon height={20} width={20} fill="white" />
-          ),
-        }}
-      />
-     
+   
       <WhiteBoardTab.Screen
         name="Setting"
         component={Settings}

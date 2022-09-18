@@ -11,6 +11,7 @@ import About from '../../screens/about/about';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GlobalStyles from '../styles/globalStyles';
 import { AuthContext } from '../js/auth-context';
+import FavoritePainting from '../../screens/favoritePainting/favoritePainting';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
@@ -41,6 +42,7 @@ const StackNavigator = () => {
           </> :
           <Stack.Screen name="index" component={Index} />
         }
+        <Stack.Screen name="collection" component={FavoritePainting} />
       </Stack.Navigator>
   );
 };

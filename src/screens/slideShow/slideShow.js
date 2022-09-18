@@ -41,7 +41,7 @@ const Slideshow = () => {
 
   return (
     <View style={{flex: 1}}>
-      <Header title={'Fun fact'} />
+      <Header title={'Slide show'} />
       {
         loading ?
         <CustomLoader />

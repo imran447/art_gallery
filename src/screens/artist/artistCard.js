@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   card: {
     height: 200,
     position: 'relative',
-    width: '49%',
+    width: '49.8%',
     marginBottom: 10,
   },
   image: {

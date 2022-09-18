@@ -43,6 +43,7 @@ const Login = ({navigation}) => {
       email : emailOrPhone,
       password
     }
+    console.log("body",body);
     setIsLoading(true);
     const response = await backendCall("auth/login","POST",body);
     setIsLoading(false);
