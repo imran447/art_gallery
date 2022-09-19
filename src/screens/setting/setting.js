@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { ScrollView, View } from 'react-native';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import Header from '../../shared/components/header';
 import { styles } from './setting.module';
-import FastImage from 'react-native-fast-image';
 import RedirectTab from '../../components/redirectTab';
-import CustomButton from '../../shared/components/customButton';
-import CustomText from '../../shared/components/customText';
 import AboutusIcon from '../../assets/images/info.svg';
 import EraserIcon from '../../assets/images/erase.svg';
 import VersionIcon from '../../assets/images/version.svg';
+import FeedbackIcon from '../../assets/images/feedback.svg';
 import EditProfileIcon from '../../assets/images/user.svg';
 import LogoutIcon from '../../assets/images/logout.svg';
 import RightArrowIcon from '../../assets/images/rightArrow.svg';
@@ -150,6 +147,25 @@ const Setting = ({ navigation }) => {
               onPress={handleCleanCache}
               LeftIcon={() => (
                 <EraserIcon
+                  width={styles.iconSize.width}
+                  height={styles.iconSize.height}
+                  fill={'black'}
+                />
+              )}
+              RightIcon={() => (
+                <RightArrowIcon
+                  style={styles.arrowIcon}
+                  width={styles.arrowIcon.width}
+                  height={styles.arrowIcon.height}
+                  fill={'black'}
+                />
+              )}
+            />
+             <RedirectTab
+              text={'Feedback'}
+              onPress={()=>{navigation.navigate("feedback")}}
+              LeftIcon={() => (
+                <FeedbackIcon
                   width={styles.iconSize.width}
                   height={styles.iconSize.height}
                   fill={'black'}

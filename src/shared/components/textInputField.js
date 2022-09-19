@@ -22,6 +22,7 @@ const TextInputField = ({
   Value,
   onFocus,
   onBlur,
+  numberOfLines,
   leftAffix
   
 }) => {
@@ -32,6 +33,7 @@ const TextInputField = ({
         onFocus={onFocus}
         onBlur={onBlur}
         label={Label}
+        numberOfLines={numberOfLines}
         defaultValue={DefaultValue}
         error={IsError}
         value={Value}

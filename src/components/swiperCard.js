@@ -1,11 +1,16 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import CustomText from '../shared/components/customText';
 import environment from '../shared/js/environment';
 
-const SwiperCard = ({card}) => {
+const SwiperCard = ({card ,titleVisible = false}) => {
   return (
     <View style={styles.card}>
+      {
+        titleVisible &&
+      <CustomText style={styles.title}>{card.title}</CustomText>
+      }
        <FastImage
         source={{uri: environment.serverUrl + card.imagePath}}
         style={[styles.image]}
@@ -27,4 +32,10 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
+  title:{
+    padding:10,
+    fontSize:22,
+    fontWeight:'600',
+    color:'black'
+  }
 });

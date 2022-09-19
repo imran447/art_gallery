@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import GlobalStyles from '../styles/globalStyles';
 import { AuthContext } from '../js/auth-context';
 import FavoritePainting from '../../screens/favoritePainting/favoritePainting';
+import Feedback from '../../screens/feedback';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
@@ -43,6 +44,7 @@ const StackNavigator = () => {
           <Stack.Screen name="index" component={Index} />
         }
         <Stack.Screen name="collection" component={FavoritePainting} />
+        <Stack.Screen name="feedback" component={Feedback} />
       </Stack.Navigator>
   );
 };
