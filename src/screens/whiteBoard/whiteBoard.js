@@ -21,7 +21,7 @@ import HighResolutionIcon from '../../assets/images/high-resolution.svg';
 import { showToastMessage } from '../../shared/js/showToastMessage';
 import CustomButton from '../../shared/components/customButton';
 
-const filtersList = [
+export const filtersList = [
   {
     key: 'featured',
     value: "Featured",
@@ -39,7 +39,7 @@ const filtersList = [
   },
   {
     key: "collection",
-    value: "Collection",
+    value: "Favorite painting",
     image: <CollectionIcon height={20} width={20} fill={GlobalStyles.primary} />
   }
 ]
@@ -91,17 +91,17 @@ const WhiteBoard = ({ navigation }) => {
     setLoading(false);
   }
 
-  const handleFilter = (value) => {
-    setSelectedFilter(value);
-    console.log(value.key);
-    setLoading(true);
-    if (value.key === "collection") {
-      getCollection();
-    } else {
-      getArts(value.key);
+    const handleFilter = (value) => {
+      setSelectedFilter(value);
+      console.log(value.key);
+      setLoading(true);
+      if (value.key === "collection") {
+        getCollection();
+      } else {
+        getArts(value.key);
+      }
+      setOpenDropdown(false);
     }
-    setOpenDropdown(false);
-  }
   const handleCollection = () => {
     navigation.navigate('collection');
   };

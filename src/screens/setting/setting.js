@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View,Linking } from 'react-native';
 import Header from '../../shared/components/header';
 import { styles } from './setting.module';
 import RedirectTab from '../../components/redirectTab';
@@ -41,6 +41,10 @@ const Setting = ({ navigation }) => {
 
   const handleCleanCache = () => {
 
+  }
+
+  const handleFeedback =()=>{
+    Linking.openURL(`mailto: support@expo.io`);
   }
   return (
     <View style={[{ flex: 1 }]}>
@@ -163,7 +167,7 @@ const Setting = ({ navigation }) => {
             />
              <RedirectTab
               text={'Feedback'}
-              onPress={()=>{navigation.navigate("feedback")}}
+              onPress={handleFeedback}
               LeftIcon={() => (
                 <FeedbackIcon
                   width={styles.iconSize.width}
