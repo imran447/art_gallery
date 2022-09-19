@@ -26,6 +26,7 @@ const Setting = ({ navigation }) => {
     await AsyncStorage.removeItem('user');
     await AsyncStorage.removeItem('token');
     setToken(null);
+    navigation.push("login");
   };
 
   useEffect(() => {
