@@ -18,6 +18,20 @@ const Setting = ({ navigation }) => {
   const [token, setToken] = useContext(AuthContext);
   const [user, setUser] = useState({});
   const isFocused = useIsFocused();
+  const [isUser, setIsUser] = useState(false);
+  useEffect(() => {
+    getUser1();
+  }, [])
+
+  const getUser1 = async () => {
+    let user = await AsyncStorage.getItem('user');
+    if (user) {      
+      setIsUser(true);
+    }
+    else {
+      setIsUser(false);
+    }
+  }
 
   const handleLoginPage = () => {
     navigation.navigate('login');
@@ -45,7 +59,7 @@ const Setting = ({ navigation }) => {
   }
 
   const handleFeedback =()=>{
-    Linking.openURL(`mailto: support@expo.io`);
+    Linking.openURL(`mailto: thebeautyofartapp@gmail.com`);
   }
   return (
     <View style={[{ flex: 1 }]}>
@@ -109,6 +123,7 @@ const Setting = ({ navigation }) => {
           </View> */}
 
           <View style={{ marginTop: 20,  borderRadius: 4 }}>
+            {isUser &&
             <RedirectTab
               text={'Edit profile'}
               onPress={() => navigation.navigate("editUser")}
@@ -128,6 +143,7 @@ const Setting = ({ navigation }) => {
                 />
               )}
             />
+            }
             <RedirectTab
               text={'About beauty of art'}
               onPress={() => navigation.navigate("about")}
@@ -186,7 +202,7 @@ const Setting = ({ navigation }) => {
               )}
             />
             <RedirectTab
-              text={'Sign Out'}
+              text={isUser ? 'Sign Out': 'Login'}
               onPress={handleLogout}
               LeftIcon={() => (
                 <LogoutIcon

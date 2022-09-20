@@ -43,7 +43,6 @@ const Login = ({navigation}) => {
       email : emailOrPhone,
       password
     }
-    console.log("body",body);
     setIsLoading(true);
     const response = await backendCall("auth/login","POST",body);
     setIsLoading(false);
@@ -51,6 +50,7 @@ const Login = ({navigation}) => {
       await AsyncStorage.setItem('user', JSON.stringify(response.data));
       await AsyncStorage.setItem('token', response.data.token);
       setToken(response.data.token);
+      navigation.push("index");
     }
   };
 
